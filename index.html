@@ -1,0 +1,2196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frenchora Online French School & Learning Community</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-deep: #0f4c81;
+            --primary-gradient: linear-gradient(135deg, #0f4c81 0%, #1d70b8 100%);
+            --accent-orange: #ff6b35;
+            --accent-teal: #00a896;
+            --bg-light: #f4f7f6;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --card-shadow: 0 10px 30px rgba(15, 76, 129, 0.08);
+            --radius-lg: 16px;
+            --radius-md: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--primary-deep);
+        }
+
+        .app-view {
+            flex: 1;
+            display: none;
+        }
+
+        .app-view.active-view {
+            display: block;
+            flex: 1;
+            animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ================================================================
+                   HEADER - WHITE BACKGROUND, BLUE TEXT LOGO
+                   ================================================================ */
+        header {
+            background: #ffffff;
+            padding: 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-shrink: 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 30px;
+            min-height: 70px;
+        }
+
+        /* Logo section - Left side with white background and blue text */
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            cursor: pointer;
+            background: #ffffff;
+            padding: 4px 12px 4px 4px;
+            border-radius: 8px;
+        }
+
+        .logo-image {
+            height: 42px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Fallback text-based logo if image doesn't load */
+        .logo-text-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--primary-deep);
+            line-height: 1.1;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .logo-sub {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            color: var(--primary-deep);
+            font-weight: 700;
+            margin-top: 1px;
+            opacity: 0.8;
+        }
+
+        /* Navigation - Center/Right */
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            list-style: none;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.75rem;
+            transition: color 0.3s;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-deep);
+            border-bottom-color: var(--accent-orange);
+        }
+
+        .nav-links .btn-enrol-nav {
+            background: var(--accent-orange);
+            color: #fff !important;
+            padding: 9px 22px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 0.68rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            border-bottom: none;
+        }
+
+        .nav-links .btn-enrol-nav:hover {
+            background: #e0531f;
+            transform: scale(1.05);
+            border-bottom: none;
+            color: #fff !important;
+        }
+
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background: #ffffff;
+            min-width: 200px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            border-radius: var(--radius-md);
+            top: 100%;
+            left: 0;
+            padding: 8px 0;
+            border-top: 3px solid var(--accent-orange);
+        }
+
+        .dropdown-menu a {
+            color: var(--text-dark) !important;
+            padding: 10px 20px;
+            font-size: 0.75rem;
+            display: block;
+            border-bottom: none;
+            text-transform: none;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--bg-light);
+            color: var(--primary-deep) !important;
+            border-bottom: none;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Mobile Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1005;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--primary-deep);
+            border-radius: 3px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .menu-toggle.open span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.open span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* --- BUTTONS --- */
+        .btn-cta {
+            background: var(--accent-orange);
+            color: #fff !important;
+            padding: 10px 22px;
+            border-radius: var(--radius-md);
+            transition: transform 0.2s, background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-cta:hover {
+            background: #e0531f;
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: #fff !important;
+        }
+        .btn-whatsapp:hover {
+            background: #20ba5a;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-secondary:hover {
+            background: #fff;
+            color: var(--primary-deep);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            background: var(--primary-deep);
+            color: #fff;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero h1 {
+            color: #fff;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .hero .slogan {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-orange);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+            display: block;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        /* --- SECTIONS --- */
+        .section-padding {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .value-card {
+            background: #fff;
+            padding: 25px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--card-shadow);
+        }
+
+        .value-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: var(--primary-deep);
+        }
+
+        .text-muted {
+            color: var(--text-muted);
+        }
+
+        .content-block {
+            line-height: 1.7;
+            color: var(--text-dark);
+        }
+
+        /* --- STEPS --- */
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .step-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--card-shadow);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .step-number {
+            background: var(--primary-deep);
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- CTA BANNER --- */
+        .cta-banner {
+            background: var(--primary-deep);
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: var(--radius-lg);
+            margin: 40px auto;
+            max-width: 1200px;
+        }
+
+        .cta-banner h2 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 2rem;
+        }
+
+        .cta-banner p {
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        /* --- FEATURES LIST --- */
+        .features-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .features-list li {
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--card-shadow);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+        }
+
+        .features-list i {
+            color: var(--accent-teal);
+            font-size: 1.2rem;
+        }
+
+        /* --- FAQ --- */
+        .faq-container {
+            max-width: 850px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border-radius: var(--radius-md);
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            border-left: 4px solid var(--primary-deep);
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .faq-question h3 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .faq-icon {
+            font-size: 1.1rem;
+            color: var(--primary-deep);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            background: #fafbfc;
+            padding: 0 25px;
+        }
+
+        .faq-answer-content {
+            padding: 20px 0;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        .faq-item.open {
+            border-left-color: var(--accent-orange);
+        }
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+            color: var(--accent-orange);
+        }
+
+        /* --- REGISTRATION --- */
+        .registration-box {
+            background: #fff;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+
+        .reg-header {
+            background: var(--primary-gradient);
+            color: #fff;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .reg-header h2 {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .reg-body {
+            padding: 40px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-deep);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            flex-shrink: 0;
+            margin-top: auto;
+            background: #0f1a2b;
+            color: #fff;
+        }
+
+        footer a {
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--accent-orange) !important;
+        }
+
+        /* --- WHATSAPP WIDGET --- */
+        .wa-widget-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99999;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .wa-float-btn {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .wa-float-btn:hover {
+            transform: scale(1.05);
+            background-color: #20ba5a;
+        }
+
+        .wa-float-btn i {
+            font-size: 24px;
+        }
+
+        .wa-chat-box {
+            position: absolute;
+            bottom: 75px;
+            right: 0;
+            width: 340px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            transform-origin: bottom right;
+            transition: all 0.3s ease;
+        }
+
+        .wa-chat-box.active {
+            display: flex;
+            animation: waFadeIn 0.3s ease forwards;
+        }
+
+        @keyframes waFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .wa-chat-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .wa-avatar {
+            background: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-right: 12px;
+        }
+
+        .wa-chat-title h4 {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .wa-chat-title span {
+            font-size: 12px;
+            opacity: 0.85;
+        }
+
+        .wa-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .wa-close-btn:hover {
+            opacity: 1;
+        }
+
+        .wa-chat-body {
+            background: #efeae2;
+            padding: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .wa-msg-bubble {
+            background: white;
+            padding: 10px 14px;
+            border-radius: 0 10px 10px 10px;
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-dark);
+            line-height: 1.4;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .wa-chat-footer {
+            padding: 12px 15px;
+            background: #f0f2f5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wa-chat-footer input {
+            flex: 1;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            outline: none;
+            background: white;
+        }
+
+        .wa-chat-footer button {
+            background: #0f4c81;
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .wa-chat-footer button:hover {
+            background: #1d70b8;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media screen and (max-width: 1024px) {
+            .nav-links {
+                gap: 12px;
+            }
+            .nav-links a {
+                font-size: 0.65rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-container {
+                padding: 10px 15px;
+                min-height: 60px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: #ffffff;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                padding: 80px 24px 40px 24px;
+                box-sizing: border-box;
+                transition: right 0.4s ease-in-out;
+                overflow-y: auto;
+                z-index: 1003;
+                gap: 0;
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .nav-links.open li {
+                display: block !important;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+                width: 100%;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                display: block;
+                color: var(--text-dark);
+                border-bottom: none;
+            }
+
+            .nav-links a:hover,
+            .nav-links a.active {
+                border-bottom: none;
+                color: var(--accent-orange);
+            }
+
+            .nav-links .btn-enrol-nav {
+                text-align: center;
+                margin-top: 5px;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: none;
+                box-shadow: none;
+                padding-left: 15px;
+                background: transparent;
+                border-top: none;
+            }
+
+            .dropdown-menu a {
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .section-padding {
+                padding: 40px 15px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .wa-chat-box {
+                width: 290px;
+                right: 0;
+            }
+
+            .logo-image {
+                height: 32px;
+            }
+
+            .logo-brand {
+                font-size: 1.2rem;
+            }
+
+            .logo-sub {
+                font-size: 0.45rem;
+                letter-spacing: 1.2px;
+            }
+        }
+
+        @media screen and (min-width: 769px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        /* Teacher avatar placeholder */
+        .teacher-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #fff;
+            overflow: hidden;
+            background: var(--primary-gradient);
+        }
+
+        .teacher-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Safety badge */
+        .safety-badge {
+            background: #f0fdf4;
+            padding: 8px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.75rem;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+
+        /* Timeline for curriculum */
+        .timeline-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .curriculum-card {
+            background: #fff;
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--card-shadow);
+            flex: 1;
+        }
+
+        .curriculum-card ul {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            font-size: 0.9rem;
+            list-style: none;
+            padding: 0;
+        }
+
+        .curriculum-card ul li {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .curriculum-card ul li i {
+            color: var(--accent-teal);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HEADER - WHITE BACKGROUND, BLUE TEXT LOGO -->
+    <!-- ============================================================ -->
+    <header>
+        <div class="nav-container">
+            <!-- Logo Section - Left side with white background and blue text -->
+            <a href="#" onclick="switchView('landing')" class="logo-section">
+                <img src="images/1000120827.png" alt="Frenchora Logo" class="logo-image" onerror="this.style.display='none'">
+                
+            </a>
+
+            <!-- Mobile Toggle -->
+            <div class="menu-toggle" id="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- Navigation -->
+            <ul class="nav-links" id="main-nav">
+                <li><a onclick="switchView('landing')" id="nav-landing" class="nav-item active">HOME</a></li>
+                <li><a onclick="switchView('about')" id="nav-about" class="nav-item">ABOUT US</a></li>
+                <li><a onclick="switchView('programmes')" id="nav-programmes" class="nav-item">PROGRAMMES</a></li>
+                <li><a onclick="switchView('fees')" id="nav-fees" class="nav-item">FEES & STRUCTURE</a></li>
+
+                <li class="dropdown">
+                    <a class="nav-item" id="nav-info-hub">INFO HUB <i class="fa-solid fa-chevron-down" style="font-size:0.6rem;"></i></a>
+                    <div class="dropdown-menu">
+                        <a onclick="switchView('parents')" id="nav-parents" class="nav-item">For Parents</a>
+                        <a onclick="switchView('how-classes-work')" id="nav-how-classes" class="nav-item">How Classes Work</a>
+                        <a onclick="switchView('community')" id="nav-community" class="nav-item">Community</a>
+                        <a onclick="switchView('faq')" id="nav-faq" class="nav-item">FAQs</a>
+                    </div>
+                </li>
+
+                <li><a onclick="switchView('contact')" id="nav-contact" class="nav-item">CONTACT</a></li>
+                <li><a href="https://auth.frenchora.co.za" id="nav-student-hub" class="nav-item" style="color: var(--accent-teal);"><i class="fa-solid fa-user-graduate"></i> STUDENT HUB</a></li>
+                <li><a onclick="switchView('enrol')" id="nav-enrol" class="btn-enrol-nav">ENROL NOW</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- VIEW: LANDING -->
+    <!-- ============================================================ -->
+    <div id="view-landing" class="app-view active-view">
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-container">
+                <div>
+                    <h1>Frenchora Online French School & Learning Community</h1>
+                    <div class="slogan">Learn French. Keep French. Live French.</div>
+                    <p>Frenchora is an online French school and learning community for children, teens, adults and families who want to learn, maintain and improve French. We are especially created for francophone children growing up in English-speaking countries, while also welcoming beginners and general learners from all backgrounds.</p>
+                    <div class="hero-buttons">
+                        <button class="btn-cta" onclick="switchView('enrol')">Enrol Now</button>
+                        <a href="https://wa.me/27724448979" target="_blank" class="btn-cta btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Contact Us on WhatsApp</a>
+                    </div>
+                </div>
+                <div class="hero-graphic">
+                    <img src="images/heroSectionImage.png" alt="Friendly student learning French online" class="hero-image" onerror="this.src='https://via.placeholder.com/600x400/0f4c81/ffffff?text=Frenchora'">
+                </div>
+            </div>
+        </section>
+
+        <!-- WHO IS FRENCHORA FOR -->
+        <section class="section-padding">
+            <h2 class="section-title">Who is Frenchora for?</h2>
+            <p class="section-subtitle">Tailored learning paths built for modern bilingual requirements</p>
+
+            <div class="grid-cards">
+                <div class="value-card" style="border-top: 4px solid var(--primary-deep);">
+                    <h3>Francophone children in English-speaking schools</h3>
+                    <p class="text-muted">For children who understand or speak French at home but struggle with reading, writing, spelling, grammar and formal French.</p>
+                </div>
+                <div class="value-card" style="border-top: 4px solid var(--accent-orange);">
+                    <h3>Beginners and new learners</h3>
+                    <p class="text-muted">For children, teens and adults who want to start French from the beginning.</p>
+                </div>
+                <div class="value-card" style="border-top: 4px solid var(--accent-teal);">
+                    <h3>Teens and adults</h3>
+                    <p class="text-muted">For learners who want to improve French for school, studies, work, travel, family or personal development.</p>
+                </div>
+                <div class="value-card" style="border-top: 4px solid var(--primary-deep);">
+                    <h3>Families</h3>
+                    <p class="text-muted">For families who want to keep French alive at home and connect with a wider French-speaking community.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- NEW: TEACHER PROFILES & TRUST SECTION -->
+        <!-- ============================================================ -->
+        <section class="section-padding" style="background: #f8fafc; border-radius: var(--radius-lg);">
+            <h2 class="section-title">Meet Our Teachers</h2>
+            <p class="section-subtitle">Qualified, experienced, and passionate about teaching French</p>
+
+            <div class="grid-3">
+                <!-- Teacher 1 -->
+                <div class="value-card" style="text-align: center; border-top: 4px solid var(--primary-deep);">
+                    <div class="teacher-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Marie+Dupont&size=120&background=0f4c81&color=fff&bold=true" alt="Teacher Marie">
+                    </div>
+                    <h3>Marie Dupont</h3>
+                    <p style="color: var(--accent-orange); font-weight: 600; font-size: 0.85rem;">Native French Speaker</p>
+                    <div style="margin: 10px 0; font-size: 0.85rem; color: var(--text-muted);">
+                        <p><i class="fa-solid fa-graduation-cap" style="color: var(--primary-deep);"></i> MA in French Linguistics</p>
+                        <p><i class="fa-solid fa-clock" style="color: var(--primary-deep);"></i> 8+ years teaching experience</p>
+                        <p><i class="fa-solid fa-certificate" style="color: var(--primary-deep);"></i> DELF/DALF Certified</p>
+                    </div>
+                    <div class="safety-badge">
+                        <i class="fa-solid fa-shield-check"></i> Verified & Background Checked
+                    </div>
+                </div>
+
+                <!-- Teacher 2 -->
+                <div class="value-card" style="text-align: center; border-top: 4px solid var(--accent-orange);">
+                    <div class="teacher-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Jean+Martin&size=120&background=ff6b35&color=fff&bold=true" alt="Teacher Jean">
+                    </div>
+                    <h3>Jean Martin</h3>
+                    <p style="color: var(--accent-orange); font-weight: 600; font-size: 0.85rem;">Native French Speaker</p>
+                    <div style="margin: 10px 0; font-size: 0.85rem; color: var(--text-muted);">
+                        <p><i class="fa-solid fa-graduation-cap" style="color: var(--primary-deep);"></i> BA in French Literature</p>
+                        <p><i class="fa-solid fa-clock" style="color: var(--primary-deep);"></i> 5+ years teaching experience</p>
+                        <p><i class="fa-solid fa-certificate" style="color: var(--primary-deep);"></i> TEFL Certified</p>
+                    </div>
+                    <div class="safety-badge">
+                        <i class="fa-solid fa-shield-check"></i> Verified & Background Checked
+                    </div>
+                </div>
+
+                <!-- Teacher 3 -->
+                <div class="value-card" style="text-align: center; border-top: 4px solid var(--accent-teal);">
+                    <div class="teacher-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Sophie+Laurent&size=120&background=00a896&color=fff&bold=true" alt="Teacher Sophie">
+                    </div>
+                    <h3>Sophie Laurent</h3>
+                    <p style="color: var(--accent-orange); font-weight: 600; font-size: 0.85rem;">Native French Speaker</p>
+                    <div style="margin: 10px 0; font-size: 0.85rem; color: var(--text-muted);">
+                        <p><i class="fa-solid fa-graduation-cap" style="color: var(--primary-deep);"></i> MA in Education</p>
+                        <p><i class="fa-solid fa-clock" style="color: var(--primary-deep);"></i> 10+ years teaching experience</p>
+                        <p><i class="fa-solid fa-certificate" style="color: var(--primary-deep);"></i> DELF Examiner</p>
+                    </div>
+                    <div class="safety-badge">
+                        <i class="fa-solid fa-shield-check"></i> Verified & Background Checked
+                    </div>
+                </div>
+            </div>
+
+            <!-- SAFETY BADGES -->
+            <div style="text-align: center; margin-top: 40px; padding: 30px; background: #fff; border-radius: var(--radius-lg); box-shadow: var(--card-shadow);">
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-shield-halved" style="font-size: 2rem; color: var(--primary-deep);"></i>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; font-size: 0.9rem;">Background Checked</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">All teachers are verified</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-certificate" style="font-size: 2rem; color: var(--accent-orange);"></i>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; font-size: 0.9rem;">Qualified Teachers</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Native speakers with credentials</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-user-lock" style="font-size: 2rem; color: var(--accent-teal);"></i>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; font-size: 0.9rem;">Child-Safe Environment</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">All instructors are vetted</div>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top: 20px; font-weight: 600; color: var(--primary-deep);">
+                    <i class="fa-solid fa-circle-check" style="color: var(--accent-teal);"></i>
+                    All instructors are thoroughly vetted and background-checked.
+                </p>
+            </div>
+        </section>
+
+        <!-- MORE THAN A SCHOOL -->
+        <section class="section-padding" style="background: #fff; border-radius: var(--radius-lg); margin-bottom: 40px;">
+            <div class="grid-2">
+                <div>
+                    <h2>More than a school — a community</h2>
+                    <p class="text-muted">We believe that language grows faster when learners feel connected. Frenchora creates an ecosystem where children, adults, and families find structural peer support, cultural events, and spaces to thrive natively inside the language.</p>
+                </div>
+                <div>
+                    <img src="images/frenchora_community.png" alt="Frenchora community" class="hero-image" onerror="this.src='https://via.placeholder.com/600x400/0f4c81/ffffff?text=Our+Community'">
+                </div>
+            </div>
+        </section>
+
+        <!-- PROGRAMMES SUMMARY -->
+        <section class="section-padding">
+            <h2 class="section-title">Programmes Summary</h2>
+            <p class="section-subtitle">Structured online pathways configured around age layers and baseline fluid indicators</p>
+            <div class="grid-3">
+                <div class="value-card" style="border-top: 4px solid var(--primary-deep)">
+                    <h3>Beginner / Native Track</h3>
+                    <p class="text-muted">Focusing heavily on reading, formal writing mechanics, and grammar extensions for heritage learners.</p>
+                </div>
+                <div class="value-card" style="border-top: 4px solid var(--accent-orange)">
+                    <h3>Elementary Framework</h3>
+                    <p class="text-muted">For absolute beginners starting safely from zero to secure core speech habits progressive loops.</p>
+                </div>
+                <div class="value-card" style="border-top: 4px solid var(--accent-teal)">
+                    <h3>Conversation Club</h3>
+                    <p class="text-muted">Social environments built for interactive speaking practice, travel confidence, or workplace deployment.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn-cta" onclick="switchView('programmes')">Explore Full Programmes</button>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- NEW: RISK REDUCTION - Free Trial + Money-Back Guarantee -->
+        <!-- ============================================================ -->
+        <section class="section-padding" style="background: var(--primary-gradient); color: #fff; border-radius: var(--radius-lg);">
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <h2 style="color: #fff; font-size: 2rem; margin-bottom: 10px;">Start with Confidence</h2>
+                <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 40px;">We believe in our teaching so much that we offer a risk-free start</p>
+
+                <div class="grid-2" style="gap: 30px; text-align: left;">
+                    <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); padding: 30px; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.2);">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                            <i class="fa-solid fa-gift" style="font-size: 2.5rem; color: var(--accent-orange);"></i>
+                            <h3 style="color: #fff; margin: 0;">Free Trial Class</h3>
+                        </div>
+                        <p style="opacity: 0.9; line-height: 1.7;">Experience a real lesson before committing. Observe the teacher, see how your child responds, and evaluate the learning materials.</p>
+                        <ul style="list-style: none; margin-top: 15px; display: flex; flex-direction: column; gap: 8px; padding:0;">
+                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Meet your teacher</li>
+                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Experience the online classroom</li>
+                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> No payment required</li>
+                        </ul>
+                        <button class="btn-cta" onclick="switchView('enrol')" style="margin-top: 15px; background: #fff; color: var(--primary-deep);">Book Free Trial</button>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); padding: 30px; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.2);">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                            <i class="fa-solid fa-money-bill-wave" style="font-size: 2.5rem; color: var(--accent-orange);"></i>
+                            <h3 style="color: #fff; margin: 0;">Money-Back Guarantee</h3>
+                        </div>
+                        <p style="opacity: 0.9; line-height: 1.7;">Not satisfied after your first two lessons? We'll refund your full payment. No questions asked.</p>
+                        <ul style="list-style: none; margin-top: 15px; display: flex; flex-direction: column; gap: 8px; padding:0;">
+                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> 100% satisfaction guarantee</li>
+                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Risk-free enrolment</li>
+                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Full refund within first 2 lessons</li>
+                        </ul>
+                        <div style="margin-top: 15px; background: rgba(255,255,255,0.05); padding: 12px; border-radius: var(--radius-md); border: 1px dashed rgba(255,255,255,0.3);">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin: 0;"><i class="fa-solid fa-shield-check"></i> We stand behind our quality</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- ENHANCED: HOW IT WORKS (5 steps with visuals) -->
+        <!-- ============================================================ -->
+        <section class="section-padding" style="background: #fff; border-radius: var(--radius-lg);">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Your journey to French fluency in 5 simple steps</p>
+
+            <div class="steps-container" style="max-width: 700px; margin: 0 auto;">
+                <div class="step-card" style="border-left: 4px solid var(--primary-deep);">
+                    <div class="step-number" style="background: var(--primary-deep);">1</div>
+                    <div class="step-content">
+                        <h4>Enrol & Receive Your Schedule</h4>
+                        <p>Complete your enrolment and receive your class schedule and Zoom link.</p>
+                    </div>
+                </div>
+                <div class="step-card" style="border-left: 4px solid var(--accent-orange);">
+                    <div class="step-number" style="background: var(--accent-orange);">2</div>
+                    <div class="step-content">
+                        <h4>Join Your Live Online Lesson</h4>
+                        <p>Connect with your teacher and classmates in an interactive live session.</p>
+                    </div>
+                </div>
+                <div class="step-card" style="border-left: 4px solid var(--accent-teal);">
+                    <div class="step-number" style="background: var(--accent-teal);">3</div>
+                    <div class="step-content">
+                        <h4>Access Interactive Learning Materials</h4>
+                        <p>Use digital worksheets, exercises, and resources to reinforce your learning.</p>
+                    </div>
+                </div>
+                <div class="step-card" style="border-left: 4px solid var(--primary-deep);">
+                    <div class="step-number" style="background: var(--primary-deep);">4</div>
+                    <div class="step-content">
+                        <h4>Practice Between Lessons</h4>
+                        <p>Complete activities, review vocabulary, and practice French in your free time.</p>
+                    </div>
+                </div>
+                <div class="step-card" style="border-left: 4px solid var(--accent-orange);">
+                    <div class="step-number" style="background: var(--accent-orange);">5</div>
+                    <div class="step-content">
+                        <h4>Join the Learning Community</h4>
+                        <p>Connect with other learners, join conversation circles, and participate in cultural activities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px; background: var(--primary-gradient); padding: 25px; border-radius: var(--radius-lg); color: #fff;">
+                <p style="font-size: 1.1rem; margin: 0;">
+                    <i class="fa-solid fa-circle-check"></i>
+                    From enrolment to fluency — we support you every step of the way.
+                </p>
+            </div>
+        </section>
+
+        <!-- WHY CHOOSE FRENCHORA -->
+        <section class="section-padding">
+            <h2 class="section-title">Why Choose Frenchora?</h2>
+            <ul class="features-list">
+                <li><i class="fa-solid fa-circle-check"></i> Live online French classes</li>
+                <li><i class="fa-solid fa-circle-check"></i> Small and supportive learning groups</li>
+                <li><i class="fa-solid fa-circle-check"></i> Placement according to age and level</li>
+                <li><i class="fa-solid fa-circle-check"></i> Structured learning cycles</li>
+                <li><i class="fa-solid fa-circle-check"></i> French reading and writing support</li>
+                <li><i class="fa-solid fa-circle-check"></i> Speaking and conversation practice</li>
+                <li><i class="fa-solid fa-circle-check"></i> Support for francophone children abroad</li>
+                <li><i class="fa-solid fa-circle-check"></i> Beginner to advanced French levels</li>
+                <li><i class="fa-solid fa-circle-check"></i> Cultural and community activities</li>
+                <li><i class="fa-solid fa-circle-check"></i> Progress guidance for parents and learners</li>
+            </ul>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- NEW: DETAILED CURRICULUM (Learning Roadmap A1-C1) -->
+        <!-- ============================================================ -->
+        <section class="section-padding" style="background: #f8fafc; border-radius: var(--radius-lg);">
+            <h2 class="section-title">Your Learning Roadmap</h2>
+            <p class="section-subtitle">A clear path from beginner to confident French speaker</p>
+
+            <div style="position: relative; max-width: 800px; margin: 0 auto; padding: 20px 0;">
+                <div style="position: absolute; left: 20px; top: 0; bottom: 0; width: 3px; background: var(--primary-gradient);"></div>
+
+                <!-- A1 -->
+                <div style="display: flex; gap: 25px; margin-bottom: 30px; position: relative; padding-left: 50px;">
+                    <div class="timeline-dot" style="background: var(--primary-deep); position: absolute; left: 0; top: 0;">A1</div>
+                    <div class="curriculum-card">
+                        <h3 style="color: var(--primary-deep);">Beginner - Foundation</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;">What you'll learn:</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Greetings & introductions</li>
+                            <li><i class="fa-solid fa-check"></i> Numbers, dates & time</li>
+                            <li><i class="fa-solid fa-check"></i> Basic vocabulary (family, food, colours)</li>
+                            <li><i class="fa-solid fa-check"></i> Simple sentence structure</li>
+                            <li><i class="fa-solid fa-check"></i> Pronunciation basics</li>
+                            <li><i class="fa-solid fa-check"></i> Reading & writing simple words</li>
+                        </ul>
+                        <div style="margin-top: 12px; background: #f0fdf4; padding: 8px 12px; border-radius: var(--radius-md); display: inline-block; font-size: 0.8rem; color: #166534;">
+                            <i class="fa-regular fa-clock"></i> Duration: 3-4 months
+                        </div>
+                    </div>
+                </div>
+
+                <!-- A2 -->
+                <div style="display: flex; gap: 25px; margin-bottom: 30px; position: relative; padding-left: 50px;">
+                    <div class="timeline-dot" style="background: var(--accent-orange); position: absolute; left: 0; top: 0;">A2</div>
+                    <div class="curriculum-card">
+                        <h3 style="color: var(--accent-orange);">Elementary - Building Confidence</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;">What you'll learn:</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Everyday conversations</li>
+                            <li><i class="fa-solid fa-check"></i> Past, present & future tenses</li>
+                            <li><i class="fa-solid fa-check"></i> Describing people & places</li>
+                            <li><i class="fa-solid fa-check"></i> Reading short texts</li>
+                            <li><i class="fa-solid fa-check"></i> Writing simple paragraphs</li>
+                            <li><i class="fa-solid fa-check"></i> Asking & answering questions</li>
+                        </ul>
+                        <div style="margin-top: 12px; background: #f0fdf4; padding: 8px 12px; border-radius: var(--radius-md); display: inline-block; font-size: 0.8rem; color: #166534;">
+                            <i class="fa-regular fa-clock"></i> Duration: 4-5 months
+                        </div>
+                    </div>
+                </div>
+
+                <!-- B1 -->
+                <div style="display: flex; gap: 25px; margin-bottom: 30px; position: relative; padding-left: 50px;">
+                    <div class="timeline-dot" style="background: var(--accent-teal); position: absolute; left: 0; top: 0;">B1</div>
+                    <div class="curriculum-card">
+                        <h3 style="color: var(--accent-teal);">Intermediate - Independent User</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;">What you'll learn:</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Complex grammar structures</li>
+                            <li><i class="fa-solid fa-check"></i> Expressing opinions & ideas</li>
+                            <li><i class="fa-solid fa-check"></i> Reading & understanding articles</li>
+                            <li><i class="fa-solid fa-check"></i> Writing structured essays</li>
+                            <li><i class="fa-solid fa-check"></i> Participating in debates</li>
+                            <li><i class="fa-solid fa-check"></i> Understanding native speakers</li>
+                        </ul>
+                        <div style="margin-top: 12px; background: #f0fdf4; padding: 8px 12px; border-radius: var(--radius-md); display: inline-block; font-size: 0.8rem; color: #166534;">
+                            <i class="fa-regular fa-clock"></i> Duration: 5-6 months
+                        </div>
+                    </div>
+                </div>
+
+                <!-- B2 -->
+                <div style="display: flex; gap: 25px; margin-bottom: 30px; position: relative; padding-left: 50px;">
+                    <div class="timeline-dot" style="background: var(--primary-deep); position: absolute; left: 0; top: 0;">B2</div>
+                    <div class="curriculum-card">
+                        <h3 style="color: var(--primary-deep);">Upper Intermediate - Fluent Communicator</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;">What you'll learn:</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Advanced vocabulary</li>
+                            <li><i class="fa-solid fa-check"></i> Nuanced expression</li>
+                            <li><i class="fa-solid fa-check"></i> Professional writing skills</li>
+                            <li><i class="fa-solid fa-check"></i> Complex listening comprehension</li>
+                            <li><i class="fa-solid fa-check"></i> French for work & study</li>
+                            <li><i class="fa-solid fa-check"></i> Cultural understanding</li>
+                        </ul>
+                        <div style="margin-top: 12px; background: #f0fdf4; padding: 8px 12px; border-radius: var(--radius-md); display: inline-block; font-size: 0.8rem; color: #166534;">
+                            <i class="fa-regular fa-clock"></i> Duration: 6-7 months
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C1 -->
+                <div style="display: flex; gap: 25px; position: relative; padding-left: 50px;">
+                    <div class="timeline-dot" style="background: var(--accent-orange); position: absolute; left: 0; top: 0;">C1</div>
+                    <div class="curriculum-card" style="border: 2px solid var(--accent-orange);">
+                        <h3 style="color: var(--accent-orange);">Advanced - Mastery</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;">What you'll achieve:</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Native-like fluency</li>
+                            <li><i class="fa-solid fa-check"></i> Academic & professional French</li>
+                            <li><i class="fa-solid fa-check"></i> Complex text analysis</li>
+                            <li><i class="fa-solid fa-check"></i> Persuasive writing</li>
+                            <li><i class="fa-solid fa-check"></i> Confident public speaking</li>
+                            <li><i class="fa-solid fa-check"></i> Full cultural immersion</li>
+                        </ul>
+                        <div style="margin-top: 12px; background: var(--accent-orange); padding: 8px 12px; border-radius: var(--radius-md); display: inline-block; font-size: 0.8rem; color: #fff;">
+                            <i class="fa-regular fa-star"></i> Milestone: DELF C1 Certified
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA BANNER -->
+        <div class="cta-banner">
+            <h2>Start your Frenchora journey</h2>
+            <p>Whether your child needs to keep French alive, improve reading and writing, or start French from zero, Frenchora is ready to support the journey.</p>
+            <div style="display:flex; gap:15px; justify-content:center; flex-wrap: wrap;">
+                <button class="btn-cta" style="background: var(--primary-deep); border: 2px solid #fff;" onclick="switchView('enrol')">Book a Placement Discussion</button>
+                <button class="btn-cta" onclick="switchView('enrol')">Enrol Now</button>
+            </div>
+        </div>
+
+        <!-- CONTACT / WHATSAPP -->
+        <section class="section-padding" style="background:#fff; border-radius: var(--radius-lg); text-align: center;">
+            <h3>Quick WhatsApp Enquiries</h3>
+            <p class="text-muted" style="margin-bottom: 20px;">Click below to launch an instant communication string directly to our service reps.</p>
+            <a href="https://wa.me/27724448979" target="_blank" class="btn-cta btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Chat via WhatsApp</a>
+        </section>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- VIEW: ABOUT (abbreviated - keep your existing content) -->
+    <!-- ============================================================ -->
+    <div id="view-about" class="app-view">
+        <section class="section-padding">
+            <h2 class="section-title">About Frenchora</h2>
+            <p class="section-subtitle">Learn French. Keep French. Live French.</p>
+            <div style="margin-bottom:30px;">
+                <img src="images/about.png" alt="About Frenchora" class="hero-image" onerror="this.src='https://via.placeholder.com/800x400/0f4c81/ffffff?text=About+Us'">
+            </div>
+            <div style="background:#fff; padding:40px; border-radius:var(--radius-lg); margin-bottom:40px; box-shadow: var(--card-shadow);">
+                <p class="content-block" style="font-size: 1.1rem; line-height: 1.8;">
+                    Frenchora is an online French school and learning community created to help learners develop strong French communication skills in a structured, friendly and culturally connected environment.
+                </p>
+                <p class="content-block" style="font-size: 1.1rem; line-height: 1.8;">
+                    The school was created with a special focus on francophone children living in English-speaking countries. Many of these children can understand or speak French at home, but they often struggle to read, write, spell and use formal French correctly.
+                </p>
+                <p class="content-block" style="font-size: 1.1rem; line-height: 1.8;">
+                    Frenchora also welcomes beginners, non-francophone learners, teens and adults who want to learn French for school, family, work, travel, culture or personal growth.
+                </p>
+                <p class="content-block" style="font-weight: 600; color: var(--accent-teal); margin-top: 20px;">
+                    Our aim is to make French learning clear, accessible, practical and enjoyable.
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- VIEW: PROGRAMMES (abbreviated - keep your existing content) -->
+    <!-- ============================================================ -->
+    <div id="view-programmes" class="app-view">
+        <section class="hero" style="background: var(--primary-gradient); padding: 60px 20px;">
+            <div class="hero-container" style="align-items: center;">
+                <div>
+                    <h1>Our Programmes</h1>
+                    <p style="font-size: 1.2rem; margin-top: 5px; opacity: 0.95;">Frenchora offers structured online French programmes for different types of learners.</p>
+                    <p style="font-size: 1.05rem; opacity: 0.9; font-weight: 400;">Each programme is designed to support the learner's age, background, level and goals.</p>
+                    <p style="font-size: 1.2rem; opacity: 0.95; font-weight: 400;color: var(--accent-orange);">Learners are placed according to age, background and French level. We understand that learners do not all start from the same point which is why Frenchora offers an efficient placement system.</p>
+                </div>
+                <div class="hero-graphic">
+                    <img src="images/programmesTopBanner.png" alt="Programmes" class="hero-image" onerror="this.src='https://via.placeholder.com/600x400/0f4c81/ffffff?text=Our+Programmes'">
+                </div>
+            </div>
+        </section>
+        <section class="section-padding">
+            <h2 class="section-title">Understanding Diverse Backgrounds</h2>
+            <p class="section-subtitle">We design our groups to respond closely to unique personal language scenarios.</p>
+            <div class="grid-cards" style="margin-bottom: 50px;">
+                <div class="value-card" style="border-left: 4px solid var(--primary-deep);">
+                    <h4>Heritage Framework</h4>
+                    <p class="text-muted">One child may speak French at home but struggle to read and write it.</p>
+                </div>
+                <div class="value-card" style="border-left: 4px solid var(--accent-orange);">
+                    <h4>Fresh Discovery</h4>
+                    <p class="text-muted">Another learner may be starting French from zero.</p>
+                </div>
+                <div class="value-card" style="border-left: 4px solid var(--accent-teal);">
+                    <h4>School Support</h4>
+                    <p class="text-muted">A teenager may need target curriculum school support.</p>
+                </div>
+                <div class="value-card" style="border-left: 4px solid var(--primary-deep);">
+                    <h4>Functional Strategy</h4>
+                    <p class="text-muted">An adult may need specialized French for work or international travel.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- VIEW: FEES (abbreviated) -->
+    <!-- ============================================================ -->
+    <div id="view-fees" class="app-view">
+        <section class="section-padding">
+            <h2 class="section-title">Fees & Pricing Structure</h2>
+            <p class="section-subtitle">Affordable, transparent education framework built with structural flexibility.</p>
+            <div class="fees-table-card" style="background:#fff; padding:30px; border-radius:var(--radius-lg); box-shadow:var(--card-shadow); margin:25px 0; border-top:5px solid var(--accent-teal);">
+                <h3>Monthly Fee Structure</h3>
+                <div style="overflow-x:auto; margin-top:15px;">
+                    <table style="width:100%; border-collapse:collapse;">
+                        <thead>
+                            <tr style="border-bottom:2px solid #e2e8f0;">
+                                <th style="text-align:left; padding:12px 8px;">Programme / Level Bracket</th>
+                                <th style="text-align:right; padding:12px 8px;">Pricing (ZAR)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom:1px solid #edf2f7;">
+                                <td style="text-align:left; padding:12px 8px;"><strong>Starter / A1 Beginner Framework</strong></td>
+                                <td style="text-align:right; padding:12px 8px; color:var(--accent-teal); font-weight:700;">R1000/Month</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #edf2f7;">
+                                <td style="text-align:left; padding:12px 8px;"><strong>A2 Elementary Track</strong></td>
+                                <td style="text-align:right; padding:12px 8px; color:var(--accent-teal); font-weight:700;">R1200/Month</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #edf2f7;">
+                                <td style="text-align:left; padding:12px 8px;"><strong>B1 Intermediate Module</strong></td>
+                                <td style="text-align:right; padding:12px 8px; color:var(--accent-teal); font-weight:700;">R1400/Month</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #edf2f7;">
+                                <td style="text-align:left; padding:12px 8px;"><strong>B2 Upper Intermediate Module</strong></td>
+                                <td style="text-align:right; padding:12px 8px; color:var(--accent-teal); font-weight:700;">R1600/Month</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left; padding:12px 8px;"><strong>C1 / C2 Advanced Strategic Support</strong></td>
+                                <td style="text-align:right; padding:12px 8px; color:var(--accent-teal); font-weight:700;">R1800/Month</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- VIEW: HOW CLASSES WORK -->
+    <!-- ============================================================ -->
+    <div id="view-how-classes-work" class="app-view">
+        <section class="section-padding">
+            <h2 class="section-title">How Classes Work</h2>
+            <p class="section-subtitle">Live, highly-interactive online infrastructure bringing global environments together.</p>
+            <div style="margin-bottom:30px;">
+                <img src="images/online_lesson_setup.png" alt="Online classes" class="hero-image" onerror="this.src='https://via.placeholder.com/800x400/0f4c81/ffffff?text=Online+Classes'">
+            </div>
+            <div class="value-card" style="margin:30px 0; background:#fff;">
+                <p class="content-block" style="font-size:1.1rem; line-height:1.7; text-align:center;">
+                    Frenchora classes are offered online, making it easy for learners to join from home, school or any global location.
+                </p>
+            </div>
+            <div class="grid-3" style="margin:40px 0;">
+                <div class="value-card" style="border-top:4px solid var(--primary-deep);">
+                    <h3>Class Format</h3>
+                    <p class="text-muted">Our classes are completely live and interactive.</p>
+                </div>
+                <div class="value-card" style="border-top:4px solid var(--accent-orange);">
+                    <h3>Class Size</h3>
+                    <p class="text-muted">Small groups for high personal participation.</p>
+                </div>
+                <div class="value-card" style="border-top:4px solid var(--accent-teal);">
+                    <h3>Class Activities</h3>
+                    <p class="text-muted">Speaking, grammar, pronunciation and more.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- VIEW: COMMUNITY -->
+    <!-- ============================================================ -->
+    <div id="view-community" class="app-view">
+        <section class="hero" style="background: var(--primary-gradient); padding: 60px 20px;">
+            <div class="hero-container">
+                <div>
+                    <h1>Our Frenchora Community</h1>
+                    <p style="font-size:1.2rem; opacity:0.95;">Frenchora is more than an online French school. It is a French-speaking learning community.</p>
+                </div>
+                <div>
+                    <img src="images/frenchora_community.png" alt="Community" class="hero-image" onerror="this.src='https://via.placeholder.com/600x400/0f4c81/ffffff?text=Our+Community'">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- VIEW: PARENTS -->
+    <!-- ============================================================ -->
+    <div id="view-parents" class="app-view">
+        <section class="section-padding">
+            <h2 class="section-title">For Parents</h2>
+            <p class="section-subtitle">Partnering with families to preserve cultural heritage and language competence.</p>
+            <div style="margin-bottom:30px;">
+                <img src="images/parent_child_online_lesson.png" alt="Parents" class="hero-image" onerror="this.src='https://via.placeholder.com/800x400/0f4c81/ffffff?text=For+Parents'">
+            </div>
+            <div class="value-card" style="margin:30px 0; border-left:6px solid var(--primary-deep);">
+                <p class="content-block" style="font-size:1.1rem; line-height:1.8;">
+                    Frenchora supports parents who want their children to grow with strong French language skills.
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- VIEW: ENROL -->
+    <!-- ============================================================ -->
+    <div id="view-enrol" class="app-view">
+        <section class="section-padding" style="padding:60px 20px;">
+            <div class="registration-container">
+                <div style="text-align:center; margin-bottom:30px;">
+                    <img src="images/happy_french_learner.png" alt="Enrol" class="hero-image" style="max-width:600px; margin:0 auto;" onerror="this.src='https://via.placeholder.com/600x300/0f4c81/ffffff?text=Enrol+Now'">
+                </div>
+                <div style="text-align:center; margin-bottom:40px;">
+                    <h2 class="section-title" style="font-size:2.5rem; color:var(--primary-deep); margin-bottom:10px;">Enrol at Frenchora</h2>
+                    <p class="section-subtitle" style="color:var(--text-muted); font-size:1.1rem;">We are happy to welcome new learners to Frenchora.</p>
+                </div>
+
+                <div class="registration-box" id="enrolment-portal-card">
+                    <div class="reg-header">
+                        <h2 style="color:#fff; margin-bottom:10px; font-size:1.8rem;">Ready to begin?</h2>
+                        <p style="opacity:0.9; font-size:1rem;">Complete your baseline configuration options to unlock class placements.</p>
+                    </div>
+                    <div class="reg-body" id="enrol-form-container">
+                        <h3 style="margin-bottom:20px; border-bottom:2px solid var(--bg-light); padding-bottom:10px; color:var(--primary-deep);">Registration Request Form</h3>
+                        <form id="frenchora-registration-form">
+                            <input type="hidden" name="placement-score" id="reg-placement-score" value="0">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Parent / Guardian Full Name</label>
+                                    <input type="text" id="reg-parent-name" name="reg-parent-name" placeholder="John Doe">
+                                </div>
+                                <div class="form-group">
+                                    <label>Learner's Full Name *</label>
+                                    <input type="text" id="reg-learner-name" name="reg-learner-name" placeholder="Jane Doe" required>
+                                </div>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Country of Residence *</label>
+                                    <input type="text" id="reg-country" name="reg-country" placeholder="Start typing country..." autocomplete="off" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email Address *</label>
+                                    <input type="email" id="reg-email" name="reg-email" placeholder="example@domain.com" required>
+                                    <span id="email-validation-error" style="color:#ef4444; font-size:0.8rem; display:none; font-weight:600;">
+                                        <i class="fa-solid fa-circle-exclamation"></i> Please enter a valid email address.
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Contact Phone Number *</label>
+                                    <div style="display:flex; gap:8px;">
+                                        <select id="reg-phone-code" style="width:110px; flex-shrink:0; padding:12px 6px; font-size:0.9rem; background-color:#fff;" required>
+                                            <option value="+27" selected>🇿🇦 +27</option>
+                                            <option value="+1">🇺🇸 +1</option>
+                                            <option value="+44">🇬🇧 +44</option>
+                                            <option value="+33">🇫🇷 +33</option>
+                                            <option value="+61">🇦🇺 +61</option>
+                                            <option value="+260">🇿🇲 +260</option>
+                                            <option value="+263">🇿🇼 +263</option>
+                                            <option value="+254">🇰🇪 +254</option>
+                                            <option value="+971">🇦🇪 +971</option>
+                                        </select>
+                                        <input type="tel" id="reg-phone" placeholder="82 123 4567" required style="flex-grow:1;">
+                                        <input type="hidden" name="reg-phone" id="reg-phone-absolute">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Learner's Date of Birth *</label>
+                                    <input type="date" id="reg-dob" name="reg-dob" required>
+                                </div>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Calculated Age</label>
+                                    <input type="number" id="reg-age" name="reg-age" readonly placeholder="Calculated automatically" style="background:var(--bg-light); cursor:not-allowed;">
+                                </div>
+                                <div class="form-group">
+                                    <label>Designated French Track Framework *</label>
+                                    <select id="reg-french-level" name="reg-french-level" required style="background-color:var(--bg-light); border-color:#cbd5e1;">
+                                        <option value="" disabled selected>Please select your French level</option>
+                                        <option value="starter_a1">Starter / A1 Beginner Framework</option>
+                                        <option value="elementary_a2">A2 Elementary Track</option>
+                                        <option value="intermediate_b1">B1 Intermediate Module</option>
+                                        <option value="upper_b2">B2 Upper Intermediate Module</option>
+                                        <option value="club_c1">C1 French Conversation Club Systems</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Preferred Schedule Slot *</label>
+                                    <select name="reg-schedule" id="reg-schedule" required>
+                                        <option value="morning">Morning Classes (08:00 - 12:00)</option>
+                                        <option value="afternoon" selected>Afternoon Frameworks (13:00 - 17:00)</option>
+                                        <option value="evening">Evening Systems (18:00 - 21:00)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Learner Gender *</label>
+                                    <select name="reg-gender" id="reg-gender" required>
+                                        <option value="Not Specified" selected>Prefer not to state</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Male">Male</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-grid" style="grid-template-columns:1fr;">
+                                <div class="form-group">
+                                    <label>Home Language Background *</label>
+                                    <input type="text" placeholder="e.g. English, French, Bilingual at home" required style="width:100%;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-cta" id="btn-submit-registration" style="width:100%; padding:16px; font-size:1.1rem; border:none; border-radius:8px; font-weight:700; color:white; background:var(--accent-orange); cursor:pointer;">Submit Registration Request</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- VIEW: CONTACT -->
+    <!-- ============================================================ -->
+    <div id="view-contact" class="app-view">
+        <section class="section-padding">
+            <div style="margin-bottom:30px;">
+                <img src="images/phone_support_teacher.png" alt="Contact" class="hero-image" style="max-width:600px; margin:0 auto;" onerror="this.src='https://via.placeholder.com/600x300/0f4c81/ffffff?text=Contact+Us'">
+            </div>
+            <h2 class="section-title">Contact Frenchora</h2>
+            <p class="section-subtitle">We would love to hear from you.</p>
+            <div class="value-card" style="max-width:600px; margin:0 auto;">
+                <p><strong>Email:</strong> <a href="mailto:info@frenchora.co.za" style="color:var(--primary-deep);">info@frenchora.co.za</a></p>
+                <p><strong>WhatsApp:</strong> <a href="https://wa.me/27724448979" style="color:var(--primary-deep);">+27 72 444 8979</a></p>
+                <p><strong>Website:</strong> <a href="http://www.frenchora.co.za" target="_blank" style="color:var(--primary-deep);">www.frenchora.co.za</a></p>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- VIEW: FAQ -->
+    <!-- ============================================================ -->
+    <div id="view-faq" class="app-view">
+        <section class="section-padding">
+            <div style="margin-bottom:30px;">
+                <img src="images/faq_banner.png" alt="FAQ" class="hero-image" style="max-width:600px; margin:0 auto;" onerror="this.src='https://via.placeholder.com/600x300/0f4c81/ffffff?text=FAQs'">
+            </div>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Clear answers to help you understand our community layout operations</p>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Is Frenchora only for francophone children?</h3>
+                        <i class="fa-solid fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">No. Frenchora welcomes both francophone and non-francophone learners.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>My child understands French but cannot read or write it well. Can Frenchora help?</h3>
+                        <i class="fa-solid fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">Yes. This is one of the main reasons Frenchora was created.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Are classes online?</h3>
+                        <i class="fa-solid fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">Yes. Frenchora classes are live and online.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Can adults join?</h3>
+                        <i class="fa-solid fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">Yes. Adults can join beginner, intermediate, advanced or conversation classes.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER (NEW: Fixed + CPA/POPIA Compliance) -->
+    <!-- ============================================================ -->
+    <footer>
+        <div style="background: #0f1a2b; color: #fff; padding: 40px 20px 20px;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+
+                <!-- Main Footer Grid -->
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+
+                    <!-- Column 1: Brand -->
+                    <div>
+                        <h4 style="color: #fff; font-size: 1.2rem; margin-bottom: 10px;">Frenchora</h4>
+                        <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6;">Online French School & Learning Community</p>
+                        <p style="color: #64748b; font-size: 0.85rem; margin-top: 10px; line-height: 1.6;">
+                            Learn French. Keep French. Live French.
+                        </p>
+                        <div style="margin-top: 15px; display: flex; gap: 12px;">
+                            <a href="https://wa.me/27724448979" style="color: #25D366; font-size: 1.5rem;"><i class="fa-brands fa-whatsapp"></i></a>
+                            <a href="mailto:info@frenchora.co.za" style="color: #94a3b8; font-size: 1.5rem;"><i class="fa-regular fa-envelope"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Quick Links -->
+                    <div>
+                        <h5 style="color: #fff; font-size: 0.9rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">Quick Links</h5>
+                        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px;">
+                            <li><a onclick="switchView('programmes')" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">Programmes</a></li>
+                            <li><a onclick="switchView('fees')" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">Fees & Structure</a></li>
+                            <li><a onclick="switchView('how-classes-work')" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">How Classes Work</a></li>
+                            <li><a onclick="switchView('enrol')" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">Enrol Now</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Legal -->
+                    <div>
+                        <h5 style="color: #fff; font-size: 0.9rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+                        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px;">
+                            <li><a href="#" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;">Terms & Conditions</a></li>
+                            <li><a href="#" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;">Privacy Policy (POPIA)</a></li>
+                            <li><a href="#" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;">Cancellation Policy</a></li>
+                            <li><a href="#" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;">CPA Compliance</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 4: Contact -->
+                    <div>
+                        <h5 style="color: #fff; font-size: 0.9rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">Contact</h5>
+                        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px;">
+                            <li style="color: #94a3b8; font-size: 0.85rem;"><i class="fa-regular fa-envelope" style="margin-right: 8px; color: var(--accent-orange);"></i> info@frenchora.co.za</li>
+                            <li style="color: #94a3b8; font-size: 0.85rem;"><i class="fa-brands fa-whatsapp" style="margin-right: 8px; color: #25D366;"></i> +27 72 444 8979</li>
+                            <li style="color: #94a3b8; font-size: 0.85rem;"><i class="fa-regular fa-clock" style="margin-right: 8px; color: var(--accent-orange);"></i> Mon-Fri: 08:00 - 17:00 SAST</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Compliance Badges -->
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; padding: 20px 0; border-top: 1px solid #1e293b; border-bottom: 1px solid #1e293b; margin-bottom: 20px;">
+                    <span style="background: rgba(244, 164, 96, 0.1); border: 1px solid var(--accent-orange); color: var(--accent-orange); padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">
+                        <i class="fa-solid fa-scale-balanced"></i> CPA Compliant
+                    </span>
+                    <span style="background: rgba(0, 168, 150, 0.1); border: 1px solid var(--accent-teal); color: var(--accent-teal); padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">
+                        <i class="fa-solid fa-shield-halved"></i> POPIA Compliant
+                    </span>
+                    <span style="background: rgba(15, 76, 129, 0.1); border: 1px solid var(--primary-deep); color: var(--primary-deep); padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">
+                        <i class="fa-solid fa-certificate"></i> Consumer Protection Act
+                    </span>
+                    <span style="background: rgba(37, 211, 102, 0.1); border: 1px solid #25D366; color: #25D366; padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">
+                        <i class="fa-solid fa-user-check"></i> All Teachers Vetted
+                    </span>
+                </div>
+
+                <!-- CPA Full Legal Text -->
+                <div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: var(--radius-md); margin-bottom: 20px; border-left: 3px solid var(--accent-orange);">
+                    <h5 style="color: #fff; font-size: 0.9rem; margin-bottom: 10px;">
+                        <i class="fa-solid fa-scale-balanced" style="color: var(--accent-orange); margin-right: 8px;"></i>
+                        South African Consumer Protection Act (CPA) Compliance
+                    </h5>
+                    <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.6; margin-bottom: 8px;">
+                        Frenchora adheres to the South African Consumer Protection Act 68 of 2008.
+                        All lesson cancellations require 24-hour notice. In the event of loadshedding or
+                        technical difficulties, makeup classes will be scheduled at no additional cost.
+                    </p>
+                    <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.6; margin-bottom: 0;">
+                        <strong style="color: #fff;">Refund Policy:</strong> If you are not satisfied after the first two lessons,
+                        we offer a full money-back guarantee. No questions asked.
+                    </p>
+                </div>
+
+                <!-- POPIA -->
+                <div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: var(--radius-md); margin-bottom: 20px; border-left: 3px solid var(--accent-teal);">
+                    <h5 style="color: #fff; font-size: 0.9rem; margin-bottom: 10px;">
+                        <i class="fa-solid fa-shield-halved" style="color: var(--accent-teal); margin-right: 8px;"></i>
+                        POPIA Compliance - Privacy Policy
+                    </h5>
+                    <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.6; margin-bottom: 8px;">
+                        Frenchora is committed to protecting your personal information in accordance with the
+                        Protection of Personal Information Act (POPIA). We collect, store, and process your data
+                        only for the purpose of providing our educational services.
+                    </p>
+                    <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.6; margin-bottom: 0;">
+                        <strong style="color: #fff;">Your rights:</strong> You have the right to access, correct, or delete
+                        your personal information at any time. For data requests, please contact us at
+                        <a href="mailto:privacy@frenchora.co.za" style="color: var(--accent-orange); text-decoration: none;">privacy@frenchora.co.za</a>
+                    </p>
+                </div>
+
+                <!-- Loadshedding Policy -->
+                <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: var(--radius-md); margin-bottom: 20px; border-left: 3px solid var(--primary-deep);">
+                    <h5 style="color: #fff; font-size: 0.9rem; margin-bottom: 8px;">
+                        <i class="fa-solid fa-bolt" style="color: var(--accent-orange); margin-right: 8px;"></i>
+                        Loadshedding & Technical Issue Policy
+                    </h5>
+                    <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.6; margin-bottom: 0;">
+                        If a learner misses a lesson due to loadshedding or technical difficulties on either side,
+                        we will reschedule the lesson at no additional cost. We understand that connectivity issues
+                        can happen and we are committed to ensuring uninterrupted learning.
+                    </p>
+                </div>
+
+                <!-- Copyright -->
+                <div style="border-top: 1px solid #1e293b; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <p style="color: #64748b; font-size: 0.8rem; margin: 0;">
+                        &copy; <span id="currentYear"></span> Frenchora &mdash; All Rights Reserved.
+                    </p>
+                    <div style="display: flex; gap: 20px;">
+                        <a href="#" style="color: #64748b; text-decoration: none; font-size: 0.75rem;">Terms of Service</a>
+                        <a href="#" style="color: #64748b; text-decoration: none; font-size: 0.75rem;">Privacy Policy</a>
+                        <a href="#" style="color: #64748b; text-decoration: none; font-size: 0.75rem;">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- WHATSAPP WIDGET -->
+    <!-- ============================================================ -->
+    <div class="wa-widget-container">
+        <div class="wa-chat-box" id="waChatBox">
+            <div class="wa-chat-header">
+                <div class="wa-avatar"><i class="fab fa-whatsapp"></i></div>
+                <div class="wa-chat-title">
+                    <h4>Frenchora Support</h4>
+                    <span>Typically replies in minutes</span>
+                </div>
+                <button class="wa-close-btn" id="waCloseBtn">&times;</button>
+            </div>
+            <div class="wa-chat-body">
+                <p class="wa-msg-bubble">Bonjour! 👋 How can we help you with your French learning journey today?</p>
+            </div>
+            <div class="wa-chat-footer">
+                <input type="text" id="waInputMessage" placeholder="Type your message here..." autocomplete="off">
+                <button id="waSendBtn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button class="wa-float-btn" id="waFloatBtn" title="Chat with us on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="wa-badge-text">Chat with us</span>
+        </button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================================================ -->
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Switch Views
+        function switchView(viewId) {
+            document.querySelectorAll('.app-view').forEach(view => {
+                view.classList.remove('active-view');
+            });
+            const targetView = document.getElementById('view-' + viewId);
+            if (targetView) targetView.classList.add('active-view');
+
+            document.querySelectorAll('#main-nav a').forEach(nav => nav.classList.remove('active'));
+            const activeNav = document.getElementById('nav-' + viewId);
+            if (activeNav) activeNav.classList.add('active');
+
+            // Close mobile menu
+            document.getElementById('main-nav').classList.remove('open');
+            document.getElementById('mobile-menu-btn').classList.remove('open');
+
+            window.scrollTo(0, 0);
+        }
+
+        // FAQ Accordion
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            const answer = item.querySelector('.faq-answer');
+
+            if (item.classList.contains('open')) {
+                answer.style.maxHeight = '0';
+                item.classList.remove('open');
+            } else {
+                document.querySelectorAll('.faq-item.open').forEach(openItem => {
+                    openItem.querySelector('.faq-answer').style.maxHeight = '0';
+                    openItem.classList.remove('open');
+                });
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                item.classList.add('open');
+            }
+        }
+
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleBtn = document.getElementById('mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+
+            toggleBtn.addEventListener('click', function() {
+                toggleBtn.classList.toggle('open');
+                mainNav.classList.toggle('open');
+            });
+
+            // Close menu when clicking a link
+            mainNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    toggleBtn.classList.remove('open');
+                    mainNav.classList.remove('open');
+                });
+            });
+        });
+
+        // WhatsApp Widget
+        document.addEventListener('DOMContentLoaded', function() {
+            const WHATSAPP_NUMBER = "27724448979";
+            const floatBtn = document.getElementById('waFloatBtn');
+            const chatBox = document.getElementById('waChatBox');
+            const closeBtn = document.getElementById('waCloseBtn');
+            const sendBtn = document.getElementById('waSendBtn');
+            const inputMsg = document.getElementById('waInputMessage');
+
+            floatBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                chatBox.classList.toggle('active');
+                if (chatBox.classList.contains('active')) inputMsg.focus();
+            });
+
+            closeBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                chatBox.classList.remove('active');
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.wa-widget-container')) {
+                    chatBox.classList.remove('active');
+                }
+            });
+
+            function sendWhatsAppMessage() {
+                const messageText = inputMsg.value.trim();
+                let textToSend = messageText ? encodeURIComponent(messageText) : encodeURIComponent("Bonjour Frenchora! I'd like to get more information.");
+                window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${textToSend}`, '_blank');
+                inputMsg.value = '';
+                chatBox.classList.remove('active');
+            }
+
+            sendBtn.addEventListener('click', sendWhatsAppMessage);
+            inputMsg.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') sendWhatsAppMessage();
+            });
+        });
+
+        // Registration Form Submission
+        document.getElementById('frenchora-registration-form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const emailInput = document.getElementById('reg-email');
+            const errorMsg = document.getElementById('email-validation-error');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(emailInput.value.trim())) {
+                errorMsg.style.display = 'block';
+                emailInput.style.borderColor = '#ef4444';
+                emailInput.focus();
+                return false;
+            }
+            errorMsg.style.display = 'none';
+
+            const phoneCode = document.getElementById('reg-phone-code').value;
+            const phoneNum = document.getElementById('reg-phone').value;
+            document.getElementById('reg-phone-absolute').value = `${phoneCode} ${phoneNum.trim()}`;
+
+            const formData = new FormData(this);
+
+            fetch('process-registration.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    document.getElementById('frenchora-registration-form').reset();
+                    document.getElementById('enrolment-portal-card').innerHTML = `
+                        <div style="text-align:center; padding:60px 40px; animation:fadeInUp 0.5s ease;">
+                            <div style="width:80px; height:80px; background:#f0fdf4; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 24px auto; border:2px solid #bbf7d0;">
+                                <i class="fa-solid fa-circle-check" style="font-size:3rem; color:#166534;"></i>
+                            </div>
+                            <h2 style="color:var(--primary-deep); font-size:2rem; margin-bottom:12px; font-weight:800;">Registration Sent Successfully!</h2>
+                            <p style="color:#475569; font-size:1.1rem; max-width:500px; margin:0 auto 20px auto; line-height:1.6;">
+                                You will receive an email shortly with your tracking details and enrollment confirmation framework.
+                            </p>
+                            <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:14px 20px; border-radius:8px; display:inline-block; margin-bottom:30px;">
+                                <span style="font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; color:#64748b; font-weight:700; display:block; margin-bottom:4px;">Reference Number:</span>
+                                <strong style="font-size:1.3rem; color:var(--primary-deep); font-family:monospace; letter-spacing:1px;">${data.student_number}</strong>
+                            </div>
+                            <div>
+                                <button type="button" onclick="location.reload();" style="padding:14px 32px; background:var(--primary-deep); color:white; border:none; border-radius:8px; font-weight:600; cursor:pointer;">
+                                    Return to Portal Home
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    alert('Validation Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Submission error:', error);
+                alert('Database connection issue. Please retry.');
+            });
+        });
+    </script>
+
+</body>
+</html>
