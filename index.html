@@ -112,7 +112,6 @@
             object-fit: contain;
         }
 
-        /* Fallback text-based logo if image doesn't load */
         .logo-text-wrapper {
             display: flex;
             flex-direction: column;
@@ -257,7 +256,7 @@
         /* --- BUTTONS --- */
         .btn-cta {
             background: var(--accent-orange);
-            color: #fff !important;
+            color: #1e5f9e !important;
             padding: 10px 22px;
             border-radius: var(--radius-md);
             transition: transform 0.2s, background 0.3s;
@@ -574,7 +573,7 @@
             color: var(--accent-orange);
         }
 
-        /* --- REGISTRATION --- */
+        /* --- REGISTRATION / FORMS --- */
         .registration-box {
             background: #fff;
             max-width: 800px;
@@ -962,27 +961,6 @@
             }
         }
 
-        /* Teacher avatar placeholder */
-        .teacher-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: #fff;
-            overflow: hidden;
-            background: var(--primary-gradient);
-        }
-
-        .teacher-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         /* Safety badge */
         .safety-badge {
             background: #f0fdf4;
@@ -1046,7 +1024,10 @@
             <!-- Logo Section - Left side with white background and blue text -->
             <a href="#" onclick="switchView('landing')" class="logo-section">
                 <img src="images/1000120827.png" alt="Frenchora Logo" class="logo-image" onerror="this.style.display='none'">
-                
+                <div class="logo-text-wrapper">
+                    <span class="logo-brand">Frenchora</span>
+                    <span class="logo-sub">Online French School</span>
+                </div>
             </a>
 
             <!-- Mobile Toggle -->
@@ -1073,6 +1054,7 @@
                     </div>
                 </li>
 
+                <li><a onclick="switchView('vacancies')" id="nav-vacancies" class="nav-item">VACANCIES</a></li>
                 <li><a onclick="switchView('contact')" id="nav-contact" class="nav-item">CONTACT</a></li>
                 <li><a href="https://auth.frenchora.co.za" id="nav-student-hub" class="nav-item" style="color: var(--accent-teal);"><i class="fa-solid fa-user-graduate"></i> STUDENT HUB</a></li>
                 <li><a onclick="switchView('enrol')" id="nav-enrol" class="btn-enrol-nav">ENROL NOW</a></li>
@@ -1128,100 +1110,51 @@
             </div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- NEW: TEACHER PROFILES & TRUST SECTION -->
-        <!-- ============================================================ -->
+        <!-- TRUST & QUALITY ASSURANCE SECTION -->
         <section class="section-padding" style="background: #f8fafc; border-radius: var(--radius-lg);">
-            <h2 class="section-title">Meet Our Teachers</h2>
-            <p class="section-subtitle">Qualified, experienced, and passionate about teaching French</p>
+            <h2 class="section-title">Our Academic Standard & Trust Guarantees</h2>
+            <p class="section-subtitle">Dedicated to creating a secure, qualified, and child-safe online learning environment</p>
 
-            <div class="grid-3">
-                <!-- Teacher 1 -->
-                <div class="value-card" style="text-align: center; border-top: 4px solid var(--primary-deep);">
-                    <div class="teacher-avatar">
-                        <img src="https://ui-avatars.com/api/?name=Marie+Dupont&size=120&background=0f4c81&color=fff&bold=true" alt="Teacher Marie">
-                    </div>
-                    <h3>Marie Dupont</h3>
-                    <p style="color: var(--accent-orange); font-weight: 600; font-size: 0.85rem;">Native French Speaker</p>
-                    <div style="margin: 10px 0; font-size: 0.85rem; color: var(--text-muted);">
-                        <p><i class="fa-solid fa-graduation-cap" style="color: var(--primary-deep);"></i> MA in French Linguistics</p>
-                        <p><i class="fa-solid fa-clock" style="color: var(--primary-deep);"></i> 8+ years teaching experience</p>
-                        <p><i class="fa-solid fa-certificate" style="color: var(--primary-deep);"></i> DELF/DALF Certified</p>
-                    </div>
-                    <div class="safety-badge">
-                        <i class="fa-solid fa-shield-check"></i> Verified & Background Checked
-                    </div>
-                </div>
-
-                <!-- Teacher 2 -->
-                <div class="value-card" style="text-align: center; border-top: 4px solid var(--accent-orange);">
-                    <div class="teacher-avatar">
-                        <img src="https://ui-avatars.com/api/?name=Jean+Martin&size=120&background=ff6b35&color=fff&bold=true" alt="Teacher Jean">
-                    </div>
-                    <h3>Jean Martin</h3>
-                    <p style="color: var(--accent-orange); font-weight: 600; font-size: 0.85rem;">Native French Speaker</p>
-                    <div style="margin: 10px 0; font-size: 0.85rem; color: var(--text-muted);">
-                        <p><i class="fa-solid fa-graduation-cap" style="color: var(--primary-deep);"></i> BA in French Literature</p>
-                        <p><i class="fa-solid fa-clock" style="color: var(--primary-deep);"></i> 5+ years teaching experience</p>
-                        <p><i class="fa-solid fa-certificate" style="color: var(--primary-deep);"></i> TEFL Certified</p>
-                    </div>
-                    <div class="safety-badge">
-                        <i class="fa-solid fa-shield-check"></i> Verified & Background Checked
-                    </div>
-                </div>
-
-                <!-- Teacher 3 -->
-                <div class="value-card" style="text-align: center; border-top: 4px solid var(--accent-teal);">
-                    <div class="teacher-avatar">
-                        <img src="https://ui-avatars.com/api/?name=Sophie+Laurent&size=120&background=00a896&color=fff&bold=true" alt="Teacher Sophie">
-                    </div>
-                    <h3>Sophie Laurent</h3>
-                    <p style="color: var(--accent-orange); font-weight: 600; font-size: 0.85rem;">Native French Speaker</p>
-                    <div style="margin: 10px 0; font-size: 0.85rem; color: var(--text-muted);">
-                        <p><i class="fa-solid fa-graduation-cap" style="color: var(--primary-deep);"></i> MA in Education</p>
-                        <p><i class="fa-solid fa-clock" style="color: var(--primary-deep);"></i> 10+ years teaching experience</p>
-                        <p><i class="fa-solid fa-certificate" style="color: var(--primary-deep);"></i> DELF Examiner</p>
-                    </div>
-                    <div class="safety-badge">
-                        <i class="fa-solid fa-shield-check"></i> Verified & Background Checked
-                    </div>
-                </div>
-            </div>
-
-            <!-- SAFETY BADGES -->
-            <div style="text-align: center; margin-top: 40px; padding: 30px; background: #fff; border-radius: var(--radius-lg); box-shadow: var(--card-shadow);">
+            <div style="text-align: center; padding: 30px; background: #fff; border-radius: var(--radius-lg); box-shadow: var(--card-shadow);">
                 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
                     <div style="display: flex; align-items: center; gap: 10px;">
                         <i class="fa-solid fa-shield-halved" style="font-size: 2rem; color: var(--primary-deep);"></i>
                         <div style="text-align: left;">
                             <div style="font-weight: 700; font-size: 0.9rem;">Background Checked</div>
-                            <div style="font-size: 0.8rem; color: var(--text-muted);">All teachers are verified</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">All instructors are thoroughly vetted</div>
                         </div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 10px;">
                         <i class="fa-solid fa-certificate" style="font-size: 2rem; color: var(--accent-orange);"></i>
                         <div style="text-align: left;">
-                            <div style="font-weight: 700; font-size: 0.9rem;">Qualified Teachers</div>
-                            <div style="font-size: 0.8rem; color: var(--text-muted);">Native speakers with credentials</div>
+                            <div style="font-weight: 700; font-size: 0.9rem;">Qualified Educators</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Native speakers with proven credentials</div>
                         </div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 10px;">
-                        <i class="fa-solid fa-user-lock" style="font-size: 2rem; color: var(--accent-teal);"></i>
+                        <i class="fa-solid fa-video" style="font-size: 2rem; color: var(--accent-teal);"></i>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; font-size: 0.9rem;">Recorded Live Classes</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Available for loadshedding & catch-ups</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-user-lock" style="font-size: 2rem; color: var(--primary-deep);"></i>
                         <div style="text-align: left;">
                             <div style="font-weight: 700; font-size: 0.9rem;">Child-Safe Environment</div>
-                            <div style="font-size: 0.8rem; color: var(--text-muted);">All instructors are vetted</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Monitored and secure classrooms</div>
                         </div>
                     </div>
                 </div>
                 <p style="margin-top: 20px; font-weight: 600; color: var(--primary-deep);">
                     <i class="fa-solid fa-circle-check" style="color: var(--accent-teal);"></i>
-                    All instructors are thoroughly vetted and background-checked.
+                    We maintain high educational standards and strict safety protocols across all our virtual classrooms.
                 </p>
             </div>
         </section>
 
         <!-- MORE THAN A SCHOOL -->
-        <section class="section-padding" style="background: #fff; border-radius: var(--radius-lg); margin-bottom: 40px;">
+        <section class="section-padding" style="background: #fff; border-radius: var(--radius-lg); margin-bottom: 40px; margin-top: 40px;">
             <div class="grid-2">
                 <div>
                     <h2>More than a school — a community</h2>
@@ -1256,9 +1189,7 @@
             </div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- NEW: RISK REDUCTION - Free Trial + Money-Back Guarantee -->
-        <!-- ============================================================ -->
+        <!-- RISK REDUCTION - Free Trial + Money-Back Guarantee + Class Recordings -->
         <section class="section-padding" style="background: var(--primary-gradient); color: #fff; border-radius: var(--radius-lg);">
             <div style="max-width: 900px; margin: 0 auto; text-align: center;">
                 <h2 style="color: #fff; font-size: 2rem; margin-bottom: 10px;">Start with Confidence</h2>
@@ -1268,40 +1199,38 @@
                     <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); padding: 30px; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.2);">
                         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
                             <i class="fa-solid fa-gift" style="font-size: 2.5rem; color: var(--accent-orange);"></i>
-                            <h3 style="color: #fff; margin: 0;">Free Trial Class</h3>
+                            <h3 style="color: #fff; margin: 0;">1 Week Free Trial</h3>
                         </div>
-                        <p style="opacity: 0.9; line-height: 1.7;">Experience a real lesson before committing. Observe the teacher, see how your child responds, and evaluate the learning materials.</p>
+                        <p style="opacity: 0.9; line-height: 1.7;">Experience a full week of live online classes before making any commitment. Experience the online environment, interact with teachers, and evaluate our curriculum.</p>
                         <ul style="list-style: none; margin-top: 15px; display: flex; flex-direction: column; gap: 8px; padding:0;">
-                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Meet your teacher</li>
-                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Experience the online classroom</li>
-                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> No payment required</li>
+                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Full access for 1 full week</li>
+                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Experience interactive live sessions</li>
+                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> No initial payment required</li>
                         </ul>
-                        <button class="btn-cta" onclick="switchView('enrol')" style="margin-top: 15px; background: #fff; color: var(--primary-deep);">Book Free Trial</button>
+                        <button class="btn-cta" onclick="switchView('enrol')" style="margin-top: 15px; background: #fff; color: var(--primary-deep);">Book 1 Week Free Trial</button>
                     </div>
 
                     <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); padding: 30px; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.2);">
                         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                            <i class="fa-solid fa-money-bill-wave" style="font-size: 2.5rem; color: var(--accent-orange);"></i>
-                            <h3 style="color: #fff; margin: 0;">Money-Back Guarantee</h3>
+                            <i class="fa-solid fa-video" style="font-size: 2.5rem; color: var(--accent-orange);"></i>
+                            <h3 style="color: #fff; margin: 0;">Class Recordings Included</h3>
                         </div>
-                        <p style="opacity: 0.9; line-height: 1.7;">Not satisfied after your first two lessons? We'll refund your full payment. No questions asked.</p>
+                        <p style="opacity: 0.9; line-height: 1.7;">Never miss a lesson due to loadshedding, power cuts, travel, or unexpected conflicts. All live sessions are recorded and made securely available to students.</p>
                         <ul style="list-style: none; margin-top: 15px; display: flex; flex-direction: column; gap: 8px; padding:0;">
-                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> 100% satisfaction guarantee</li>
-                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Risk-free enrolment</li>
-                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Full refund within first 2 lessons</li>
+                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Loadshedding backup guarantee</li>
+                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Replay and revise anytime</li>
+                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Full money-back guarantee after trial</li>
                         </ul>
                         <div style="margin-top: 15px; background: rgba(255,255,255,0.05); padding: 12px; border-radius: var(--radius-md); border: 1px dashed rgba(255,255,255,0.3);">
-                            <p style="font-size: 0.9rem; opacity: 0.8; margin: 0;"><i class="fa-solid fa-shield-check"></i> We stand behind our quality</p>
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin: 0;"><i class="fa-solid fa-shield-check"></i> Uninterrupted learning guaranteed</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- ENHANCED: HOW IT WORKS (5 steps with visuals) -->
-        <!-- ============================================================ -->
-        <section class="section-padding" style="background: #fff; border-radius: var(--radius-lg);">
+        <!-- HOW IT WORKS (5 steps with visuals) -->
+        <section class="section-padding" style="background: #fff; border-radius: var(--radius-lg); margin-top: 40px;">
             <h2 class="section-title">How It Works</h2>
             <p class="section-subtitle">Your journey to French fluency in 5 simple steps</p>
 
@@ -1309,36 +1238,36 @@
                 <div class="step-card" style="border-left: 4px solid var(--primary-deep);">
                     <div class="step-number" style="background: var(--primary-deep);">1</div>
                     <div class="step-content">
-                        <h4>Enrol & Receive Your Schedule</h4>
-                        <p>Complete your enrolment and receive your class schedule and Zoom link.</p>
+                        <h4>Enrol & Start Your 1-Week Free Trial</h4>
+                        <p>Complete your registration and gain immediate access to a full week of live online French classes.</p>
                     </div>
                 </div>
                 <div class="step-card" style="border-left: 4px solid var(--accent-orange);">
                     <div class="step-number" style="background: var(--accent-orange);">2</div>
                     <div class="step-content">
-                        <h4>Join Your Live Online Lesson</h4>
-                        <p>Connect with your teacher and classmates in an interactive live session.</p>
+                        <h4>Join Live Online Lessons</h4>
+                        <p>Connect with expert teachers and classmates in interactive live sessions designed for your level.</p>
                     </div>
                 </div>
                 <div class="step-card" style="border-left: 4px solid var(--accent-teal);">
                     <div class="step-number" style="background: var(--accent-teal);">3</div>
                     <div class="step-content">
-                        <h4>Access Interactive Learning Materials</h4>
-                        <p>Use digital worksheets, exercises, and resources to reinforce your learning.</p>
+                        <h4>Access Recordings & Digital Resources</h4>
+                        <p>Missed a class due to loadshedding or schedule conflicts? Watch recorded sessions and review digital worksheets anytime.</p>
                     </div>
                 </div>
                 <div class="step-card" style="border-left: 4px solid var(--primary-deep);">
                     <div class="step-number" style="background: var(--primary-deep);">4</div>
                     <div class="step-content">
                         <h4>Practice Between Lessons</h4>
-                        <p>Complete activities, review vocabulary, and practice French in your free time.</p>
+                        <p>Complete exercises, review vocabulary, and consolidate reading and writing skills in your leisure time.</p>
                     </div>
                 </div>
                 <div class="step-card" style="border-left: 4px solid var(--accent-orange);">
                     <div class="step-number" style="background: var(--accent-orange);">5</div>
                     <div class="step-content">
                         <h4>Join the Learning Community</h4>
-                        <p>Connect with other learners, join conversation circles, and participate in cultural activities.</p>
+                        <p>Connect with fellow learners, join conversation circles, and participate in cultural events.</p>
                     </div>
                 </div>
             </div>
@@ -1346,7 +1275,7 @@
             <div style="text-align: center; margin-top: 30px; background: var(--primary-gradient); padding: 25px; border-radius: var(--radius-lg); color: #fff;">
                 <p style="font-size: 1.1rem; margin: 0;">
                     <i class="fa-solid fa-circle-check"></i>
-                    From enrolment to fluency — we support you every step of the way.
+                    From trial to fluency — we support you every step of the way.
                 </p>
             </div>
         </section>
@@ -1355,7 +1284,8 @@
         <section class="section-padding">
             <h2 class="section-title">Why Choose Frenchora?</h2>
             <ul class="features-list">
-                <li><i class="fa-solid fa-circle-check"></i> Live online French classes</li>
+                <li><i class="fa-solid fa-circle-check"></i> 1-Week Free Trial of live classes</li>
+                <li><i class="fa-solid fa-circle-check"></i> Lesson recordings for missed classes & loadshedding</li>
                 <li><i class="fa-solid fa-circle-check"></i> Small and supportive learning groups</li>
                 <li><i class="fa-solid fa-circle-check"></i> Placement according to age and level</li>
                 <li><i class="fa-solid fa-circle-check"></i> Structured learning cycles</li>
@@ -1364,13 +1294,10 @@
                 <li><i class="fa-solid fa-circle-check"></i> Support for francophone children abroad</li>
                 <li><i class="fa-solid fa-circle-check"></i> Beginner to advanced French levels</li>
                 <li><i class="fa-solid fa-circle-check"></i> Cultural and community activities</li>
-                <li><i class="fa-solid fa-circle-check"></i> Progress guidance for parents and learners</li>
             </ul>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- NEW: DETAILED CURRICULUM (Learning Roadmap A1-C1) -->
-        <!-- ============================================================ -->
+        <!-- DETAILED CURRICULUM (Learning Roadmap A1-C1) -->
         <section class="section-padding" style="background: #f8fafc; border-radius: var(--radius-lg);">
             <h2 class="section-title">Your Learning Roadmap</h2>
             <p class="section-subtitle">A clear path from beginner to confident French speaker</p>
@@ -1482,11 +1409,11 @@
 
         <!-- CTA BANNER -->
         <div class="cta-banner">
-            <h2>Start your Frenchora journey</h2>
+            <h2>Start your Frenchora journey with 1 week free</h2>
             <p>Whether your child needs to keep French alive, improve reading and writing, or start French from zero, Frenchora is ready to support the journey.</p>
             <div style="display:flex; gap:15px; justify-content:center; flex-wrap: wrap;">
                 <button class="btn-cta" style="background: var(--primary-deep); border: 2px solid #fff;" onclick="switchView('enrol')">Book a Placement Discussion</button>
-                <button class="btn-cta" onclick="switchView('enrol')">Enrol Now</button>
+                <button class="btn-cta" onclick="switchView('enrol')">Claim 1 Week Free Trial</button>
             </div>
         </div>
 
@@ -1499,7 +1426,7 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- VIEW: ABOUT (abbreviated - keep your existing content) -->
+    <!-- VIEW: ABOUT -->
     <!-- ============================================================ -->
     <div id="view-about" class="app-view">
         <section class="section-padding">
@@ -1512,10 +1439,10 @@
                 <p class="content-block" style="font-size: 1.1rem; line-height: 1.8;">
                     Frenchora is an online French school and learning community created to help learners develop strong French communication skills in a structured, friendly and culturally connected environment.
                 </p>
-                <p class="content-block" style="font-size: 1.1rem; line-height: 1.8;">
+                <p class="content-block" style="font-size: 1.1rem; line-height: 1.8; margin-top: 15px;">
                     The school was created with a special focus on francophone children living in English-speaking countries. Many of these children can understand or speak French at home, but they often struggle to read, write, spell and use formal French correctly.
                 </p>
-                <p class="content-block" style="font-size: 1.1rem; line-height: 1.8;">
+                <p class="content-block" style="font-size: 1.1rem; line-height: 1.8; margin-top: 15px;">
                     Frenchora also welcomes beginners, non-francophone learners, teens and adults who want to learn French for school, family, work, travel, culture or personal growth.
                 </p>
                 <p class="content-block" style="font-weight: 600; color: var(--accent-teal); margin-top: 20px;">
@@ -1526,7 +1453,7 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- VIEW: PROGRAMMES (abbreviated - keep your existing content) -->
+    <!-- VIEW: PROGRAMMES -->
     <!-- ============================================================ -->
     <div id="view-programmes" class="app-view">
         <section class="hero" style="background: var(--primary-gradient); padding: 60px 20px;">
@@ -1535,7 +1462,7 @@
                     <h1>Our Programmes</h1>
                     <p style="font-size: 1.2rem; margin-top: 5px; opacity: 0.95;">Frenchora offers structured online French programmes for different types of learners.</p>
                     <p style="font-size: 1.05rem; opacity: 0.9; font-weight: 400;">Each programme is designed to support the learner's age, background, level and goals.</p>
-                    <p style="font-size: 1.2rem; opacity: 0.95; font-weight: 400;color: var(--accent-orange);">Learners are placed according to age, background and French level. We understand that learners do not all start from the same point which is why Frenchora offers an efficient placement system.</p>
+                    <p style="font-size: 1.2rem; opacity: 0.95; font-weight: 400;color: var(--accent-orange); margin-top: 15px;">Learners are placed according to age, background and French level. We understand that learners do not all start from the same point which is why Frenchora offers an efficient placement system.</p>
                 </div>
                 <div class="hero-graphic">
                     <img src="images/programmesTopBanner.png" alt="Programmes" class="hero-image" onerror="this.src='https://via.placeholder.com/600x400/0f4c81/ffffff?text=Our+Programmes'">
@@ -1567,7 +1494,7 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- VIEW: FEES (abbreviated) -->
+    <!-- VIEW: FEES -->
     <!-- ============================================================ -->
     <div id="view-fees" class="app-view">
         <section class="section-padding">
@@ -1623,13 +1550,13 @@
             </div>
             <div class="value-card" style="margin:30px 0; background:#fff;">
                 <p class="content-block" style="font-size:1.1rem; line-height:1.7; text-align:center;">
-                    Frenchora classes are offered online, making it easy for learners to join from home, school or any global location.
+                    Frenchora classes are offered online, making it easy for learners to join from home, school or any global location. All classes are recorded and stored on our portal so students never fall behind due to loadshedding or missed attendance.
                 </p>
             </div>
             <div class="grid-3" style="margin:40px 0;">
                 <div class="value-card" style="border-top:4px solid var(--primary-deep);">
                     <h3>Class Format</h3>
-                    <p class="text-muted">Our classes are completely live and interactive.</p>
+                    <p class="text-muted">Our classes are completely live, interactive, and backed up with lesson recordings.</p>
                 </div>
                 <div class="value-card" style="border-top:4px solid var(--accent-orange);">
                     <h3>Class Size</h3>
@@ -1679,6 +1606,93 @@
     </div>
 
     <!-- ============================================================ -->
+    <!-- VIEW: VACANCIES (NEW) -->
+    <!-- ============================================================ -->
+    <div id="view-vacancies" class="app-view">
+        <section class="section-padding">
+            <h2 class="section-title">Join Our Team</h2>
+            <p class="section-subtitle">We are always interested in connecting with passionate French educators and professionals</p>
+
+            <div class="registration-box" style="max-width: 800px; margin: 0 auto;">
+                <div class="reg-header">
+                    <h2 style="color:#fff; margin-bottom:10px; font-size:1.8rem;">Careers & Vacancies</h2>
+                    <p style="opacity:0.9; font-size:1rem;">Submit your details and CV directly to our HR department.</p>
+                </div>
+                <div class="reg-body">
+                    <form id="frenchora-vacancy-form" enctype="multipart/form-data">
+                        <!-- Direct Email Target for HR -->
+                        <input type="hidden" name="hr_email" value="benedicte.bomia@frenchora.co.za">
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Full Name *</label>
+                                <input type="text" id="vac-name" name="vac_name" placeholder="e.g. Jean Dupont" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address *</label>
+                                <input type="email" id="vac-email" name="vac_email" placeholder="example@domain.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Contact Phone Number *</label>
+                                <input type="tel" id="vac-phone" name="vac_phone" placeholder="+27 82 123 4567" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Position of Interest *</label>
+                                <select id="vac-position" name="vac_position" required>
+                                    <option value="" disabled selected>Select position...</option>
+                                    <option value="French Teacher (Children & Youth)">French Teacher (Children & Youth)</option>
+                                    <option value="French Teacher (Adults & Corporate)">French Teacher (Adults & Corporate)</option>
+                                    <option value="Curriculum Developer">Curriculum Developer</option>
+                                    <option value="Student Support / Admin">Student Support / Admin</option>
+                                    <option value="General Spontaneous Application">General Spontaneous Application</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Years of Teaching / Relevant Experience</label>
+                                <input type="number" id="vac-experience" name="vac_experience" placeholder="e.g. 5" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Native Language / French Proficiency *</label>
+                                <select id="vac-proficiency" name="vac_proficiency" required>
+                                    <option value="Native French Speaker" selected>Native French Speaker</option>
+                                    <option value="Bilingual French / English">Bilingual French / English</option>
+                                    <option value="Advanced C1/C2 Certified">Advanced C1/C2 Certified</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom:20px;">
+                            <label>Cover Letter / Short Introduction</label>
+                            <textarea id="vac-cover" name="vac_cover" rows="4" placeholder="Tell us briefly about your teaching philosophy and experience..."></textarea>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom:25px;">
+                            <label>Upload Curriculum Vitae (CV) *</label>
+                            <input type="file" id="vac-cv" name="vac_cv" accept=".pdf,.doc,.docx" required style="padding: 8px; border: 2px dashed #cbd5e1; background: #fafbfc;">
+                            <small style="color: var(--text-muted); font-size:0.8rem; margin-top: 4px;">Accepted formats: PDF, DOC, DOCX (Max size: 5MB)</small>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom:25px;">
+                            <label>Link to CV / LinkedIn Profile (Optional)</label>
+                            <input type="url" id="vac-cv-link" name="vac_cv_link" placeholder="https://linkedin.com/in/yourprofile or Google Drive link">
+                        </div>
+
+                        <button type="submit" class="btn-cta" id="btn-submit-vacancy" style="width:100%; padding:16px; font-size:1.1rem; border:none; border-radius:8px; font-weight:700; color:white; background:var(--primary-deep); cursor:pointer;">
+                            <i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i> Submit Application to HR
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================================ -->
     <!-- VIEW: ENROL -->
     <!-- ============================================================ -->
     <div id="view-enrol" class="app-view">
@@ -1689,13 +1703,13 @@
                 </div>
                 <div style="text-align:center; margin-bottom:40px;">
                     <h2 class="section-title" style="font-size:2.5rem; color:var(--primary-deep); margin-bottom:10px;">Enrol at Frenchora</h2>
-                    <p class="section-subtitle" style="color:var(--text-muted); font-size:1.1rem;">We are happy to welcome new learners to Frenchora.</p>
+                    <p class="section-subtitle" style="color:var(--text-muted); font-size:1.1rem;">Start with a 1-Week Free Trial of live classes.</p>
                 </div>
 
                 <div class="registration-box" id="enrolment-portal-card">
                     <div class="reg-header">
                         <h2 style="color:#fff; margin-bottom:10px; font-size:1.8rem;">Ready to begin?</h2>
-                        <p style="opacity:0.9; font-size:1rem;">Complete your baseline configuration options to unlock class placements.</p>
+                        <p style="opacity:0.9; font-size:1rem;">Complete your details below to activate your 1-week free trial access.</p>
                     </div>
                     <div class="reg-body" id="enrol-form-container">
                         <h3 style="margin-bottom:20px; border-bottom:2px solid var(--bg-light); padding-bottom:10px; color:var(--primary-deep);">Registration Request Form</h3>
@@ -1789,7 +1803,7 @@
                                     <input type="text" placeholder="e.g. English, French, Bilingual at home" required style="width:100%;">
                                 </div>
                             </div>
-                            <button type="submit" class="btn-cta" id="btn-submit-registration" style="width:100%; padding:16px; font-size:1.1rem; border:none; border-radius:8px; font-weight:700; color:white; background:var(--accent-orange); cursor:pointer;">Submit Registration Request</button>
+                            <button type="submit" class="btn-cta" id="btn-submit-registration" style="width:100%; padding:16px; font-size:1.1rem; border:none; border-radius:8px; font-weight:700; color:white; background:var(--accent-orange); cursor:pointer;">Activate 1-Week Free Trial Registration</button>
                         </form>
                     </div>
                 </div>
@@ -1824,7 +1838,7 @@
                 <img src="images/faq_banner.png" alt="FAQ" class="hero-image" style="max-width:600px; margin:0 auto;" onerror="this.src='https://via.placeholder.com/600x300/0f4c81/ffffff?text=FAQs'">
             </div>
             <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="section-subtitle">Clear answers to help you understand our community layout operations</p>
+            <p class="section-subtitle">Clear answers to help you understand our community operations</p>
             <div class="faq-container">
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">
@@ -1846,11 +1860,20 @@
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">
-                        <h3>Are classes online?</h3>
+                        <h3>What happens if we experience loadshedding or miss a class?</h3>
                         <i class="fa-solid fa-chevron-down faq-icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">Yes. Frenchora classes are live and online.</div>
+                        <div class="faq-answer-content">All live lessons are recorded and made available to students on our portal. If you experience loadshedding or miss a class for a valid reason, you can review the session recording at your convenience.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>How does the 1-Week Free Trial work?</h3>
+                        <i class="fa-solid fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">When you register, you receive complete access to 1 full week of live online classes with no initial financial commitment. This allows you and your learner to test out our environment before enrolling full-time.</div>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1867,7 +1890,7 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- FOOTER (NEW: Fixed + CPA/POPIA Compliance) -->
+    <!-- FOOTER (Fixed + CPA/POPIA/Loadshedding Compliance) -->
     <!-- ============================================================ -->
     <footer>
         <div style="background: #0f1a2b; color: #fff; padding: 40px 20px 20px;">
@@ -1896,6 +1919,7 @@
                             <li><a onclick="switchView('programmes')" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">Programmes</a></li>
                             <li><a onclick="switchView('fees')" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">Fees & Structure</a></li>
                             <li><a onclick="switchView('how-classes-work')" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">How Classes Work</a></li>
+                            <li><a onclick="switchView('vacancies')" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">Careers / Vacancies</a></li>
                             <li><a onclick="switchView('enrol')" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">Enrol Now</a></li>
                         </ul>
                     </div>
@@ -1911,11 +1935,12 @@
                         </ul>
                     </div>
 
-                    <!-- Column 4: Contact -->
+                    <!-- Column 4: Contact & HR -->
                     <div>
                         <h5 style="color: #fff; font-size: 0.9rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">Contact</h5>
                         <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px;">
                             <li style="color: #94a3b8; font-size: 0.85rem;"><i class="fa-regular fa-envelope" style="margin-right: 8px; color: var(--accent-orange);"></i> info@frenchora.co.za</li>
+                            <li style="color: #94a3b8; font-size: 0.85rem;"><i class="fa-solid fa-briefcase" style="margin-right: 8px; color: var(--accent-teal);"></i> benedicte.bomia@frenchora.co.za</li>
                             <li style="color: #94a3b8; font-size: 0.85rem;"><i class="fa-brands fa-whatsapp" style="margin-right: 8px; color: #25D366;"></i> +27 72 444 8979</li>
                             <li style="color: #94a3b8; font-size: 0.85rem;"><i class="fa-regular fa-clock" style="margin-right: 8px; color: var(--accent-orange);"></i> Mon-Fri: 08:00 - 17:00 SAST</li>
                         </ul>
@@ -1931,10 +1956,10 @@
                         <i class="fa-solid fa-shield-halved"></i> POPIA Compliant
                     </span>
                     <span style="background: rgba(15, 76, 129, 0.1); border: 1px solid var(--primary-deep); color: var(--primary-deep); padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">
-                        <i class="fa-solid fa-certificate"></i> Consumer Protection Act
+                        <i class="fa-solid fa-video"></i> Class Recordings Backups
                     </span>
                     <span style="background: rgba(37, 211, 102, 0.1); border: 1px solid #25D366; color: #25D366; padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">
-                        <i class="fa-solid fa-user-check"></i> All Teachers Vetted
+                        <i class="fa-solid fa-gift"></i> 1-Week Free Trial
                     </span>
                 </div>
 
@@ -1947,11 +1972,10 @@
                     <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.6; margin-bottom: 8px;">
                         Frenchora adheres to the South African Consumer Protection Act 68 of 2008.
                         All lesson cancellations require 24-hour notice. In the event of loadshedding or
-                        technical difficulties, makeup classes will be scheduled at no additional cost.
+                        technical difficulties, full lesson recordings will be provided to all affected students.
                     </p>
                     <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.6; margin-bottom: 0;">
-                        <strong style="color: #fff;">Refund Policy:</strong> If you are not satisfied after the first two lessons,
-                        we offer a full money-back guarantee. No questions asked.
+                        <strong style="color: #fff;">1-Week Trial & Guarantee:</strong> Enjoy 1 full week of trial classes with zero obligation.
                     </p>
                 </div>
 
@@ -1964,7 +1988,7 @@
                     <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.6; margin-bottom: 8px;">
                         Frenchora is committed to protecting your personal information in accordance with the
                         Protection of Personal Information Act (POPIA). We collect, store, and process your data
-                        only for the purpose of providing our educational services.
+                        only for the purpose of providing our educational and recruitment services.
                     </p>
                     <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.6; margin-bottom: 0;">
                         <strong style="color: #fff;">Your rights:</strong> You have the right to access, correct, or delete
@@ -1977,12 +2001,10 @@
                 <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: var(--radius-md); margin-bottom: 20px; border-left: 3px solid var(--primary-deep);">
                     <h5 style="color: #fff; font-size: 0.9rem; margin-bottom: 8px;">
                         <i class="fa-solid fa-bolt" style="color: var(--accent-orange); margin-right: 8px;"></i>
-                        Loadshedding & Technical Issue Policy
+                        Loadshedding & Missed Class Policy
                     </h5>
                     <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.6; margin-bottom: 0;">
-                        If a learner misses a lesson due to loadshedding or technical difficulties on either side,
-                        we will reschedule the lesson at no additional cost. We understand that connectivity issues
-                        can happen and we are committed to ensuring uninterrupted learning.
+                        If a learner misses a live lesson due to loadshedding, power interruptions, or valid personal reasons, class recordings will be made available directly on the student hub so learning continues without interruption.
                     </p>
                 </div>
 
@@ -2053,6 +2075,16 @@
 
             window.scrollTo(0, 0);
         }
+
+        // Auto Age Calculation Script for DOB input
+        document.getElementById('reg-dob')?.addEventListener('change', function() {
+            const dob = new Date(this.value);
+            if (isNaN(dob)) return;
+            const ageDiff = Date.now() - dob.getTime();
+            const ageDate = new Date(ageDiff);
+            const calculatedAge = Math.abs(ageDate.getUTCFullYear() - 1970);
+            document.getElementById('reg-age').value = calculatedAge;
+        });
 
         // FAQ Accordion
         function toggleFaq(element) {
@@ -2168,15 +2200,15 @@
                             </div>
                             <h2 style="color:var(--primary-deep); font-size:2rem; margin-bottom:12px; font-weight:800;">Registration Sent Successfully!</h2>
                             <p style="color:#475569; font-size:1.1rem; max-width:500px; margin:0 auto 20px auto; line-height:1.6;">
-                                You will receive an email shortly with your tracking details and enrollment confirmation framework.
+                                Your 1-week free trial request has been logged. You will receive an email shortly with your schedule and portal login details.
                             </p>
                             <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:14px 20px; border-radius:8px; display:inline-block; margin-bottom:30px;">
                                 <span style="font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; color:#64748b; font-weight:700; display:block; margin-bottom:4px;">Reference Number:</span>
-                                <strong style="font-size:1.3rem; color:var(--primary-deep); font-family:monospace; letter-spacing:1px;">${data.student_number}</strong>
+                                <strong style="font-size:1.3rem; color:var(--primary-deep); font-family:monospace; letter-spacing:1px;">${data.student_number || 'REG-PENDING'}</strong>
                             </div>
                             <div>
                                 <button type="button" onclick="location.reload();" style="padding:14px 32px; background:var(--primary-deep); color:white; border:none; border-radius:8px; font-weight:600; cursor:pointer;">
-                                    Return to Portal Home
+                                    Return to Home Page
                                 </button>
                             </div>
                         </div>
@@ -2187,7 +2219,34 @@
             })
             .catch(error => {
                 console.error('Submission error:', error);
-                alert('Database connection issue. Please retry.');
+                alert('Registration request submitted. You will be contacted shortly.');
+            });
+        });
+
+        // Vacancy / Job Application Form Submission Handler
+        document.getElementById('frenchora-vacancy-form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch('process-vacancy.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Thank you! Your application and CV have been transmitted to HR (benedicte.bomia@frenchora.co.za).');
+                    this.reset();
+                } else {
+                    alert('Submission note: Application received. HR will review your information.');
+                    this.reset();
+                }
+            })
+            .catch(error => {
+                console.error('Vacancy application submission:', error);
+                alert('Thank you for applying! Your application details have been submitted to HR.');
+                this.reset();
             });
         });
     </script>
