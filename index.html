@@ -1022,7 +1022,7 @@
     <header>
         <div class="nav-container">
             <!-- Logo Section - Left side with white background and blue text -->
-            <a href="#" onclick="switchView('landing')" class="logo-section">
+            <a href="#landing" onclick="switchView('landing'); return false;" class="logo-section">
                 <img src="images/1000120827.png" alt="Frenchora Logo" class="logo-image" onerror="this.style.display='none'">
                 <div class="logo-text-wrapper">
                     <span class="logo-brand">Frenchora</span>
@@ -1039,25 +1039,25 @@
 
             <!-- Navigation -->
             <ul class="nav-links" id="main-nav">
-                <li><a onclick="switchView('landing')" id="nav-landing" class="nav-item active">HOME</a></li>
-                <li><a onclick="switchView('about')" id="nav-about" class="nav-item">ABOUT US</a></li>
-                <li><a onclick="switchView('programmes')" id="nav-programmes" class="nav-item">PROGRAMMES</a></li>
-                <li><a onclick="switchView('fees')" id="nav-fees" class="nav-item">FEES & STRUCTURE</a></li>
+                <li><a href="#landing" onclick="switchView('landing'); return false;" id="nav-landing" class="nav-item active">HOME</a></li>
+                <li><a href="#about" onclick="switchView('about'); return false;" id="nav-about" class="nav-item">ABOUT US</a></li>
+                <li><a href="#programmes" onclick="switchView('programmes'); return false;" id="nav-programmes" class="nav-item">PROGRAMMES</a></li>
+                <li><a href="#fees" onclick="switchView('fees'); return false;" id="nav-fees" class="nav-item">FEES & STRUCTURE</a></li>
 
                 <li class="dropdown">
                     <a class="nav-item" id="nav-info-hub">INFO HUB <i class="fa-solid fa-chevron-down" style="font-size:0.6rem;"></i></a>
                     <div class="dropdown-menu">
-                        <a onclick="switchView('parents')" id="nav-parents" class="nav-item">For Parents</a>
-                        <a onclick="switchView('how-classes-work')" id="nav-how-classes" class="nav-item">How Classes Work</a>
-                        <a onclick="switchView('community')" id="nav-community" class="nav-item">Community</a>
-                        <a onclick="switchView('faq')" id="nav-faq" class="nav-item">FAQs</a>
+                        <a href="#parents" onclick="switchView('parents'); return false;" id="nav-parents" class="nav-item">For Parents</a>
+                        <a href="#how-classes-work" onclick="switchView('how-classes-work'); return false;" id="nav-how-classes" class="nav-item">How Classes Work</a>
+                        <a href="#community" onclick="switchView('community'); return false;" id="nav-community" class="nav-item">Community</a>
+                        <a href="#faq" onclick="switchView('faq'); return false;" id="nav-faq" class="nav-item">FAQs</a>
                     </div>
                 </li>
 
-                <li><a onclick="switchView('vacancies')" id="nav-vacancies" class="nav-item">VACANCIES</a></li>
-                <li><a onclick="switchView('contact')" id="nav-contact" class="nav-item">CONTACT</a></li>
+                <li><a href="#vacancies" onclick="switchView('vacancies'); return false;" id="nav-vacancies" class="nav-item">VACANCIES</a></li>
+                <li><a href="#contact" onclick="switchView('contact'); return false;" id="nav-contact" class="nav-item">CONTACT</a></li>
                 <li><a href="https://auth.frenchora.co.za" id="nav-student-hub" class="nav-item" style="color: var(--accent-teal);"><i class="fa-solid fa-user-graduate"></i> STUDENT HUB</a></li>
-                <li><a onclick="switchView('enrol')" id="nav-enrol" class="btn-enrol-nav">ENROL NOW</a></li>
+                <li><a href="#enrol" onclick="switchView('enrol'); return false;" id="nav-enrol" class="btn-enrol-nav">ENROL NOW</a></li>
             </ul>
         </div>
     </header>
@@ -1189,27 +1189,13 @@
             </div>
         </section>
 
-        <!-- RISK REDUCTION - Free Trial + Money-Back Guarantee + Class Recordings -->
+        <!-- RISK REDUCTION - Class Recordings -->
         <section class="section-padding" style="background: var(--primary-gradient); color: #fff; border-radius: var(--radius-lg);">
             <div style="max-width: 900px; margin: 0 auto; text-align: center;">
                 <h2 style="color: #fff; font-size: 2rem; margin-bottom: 10px;">Start with Confidence</h2>
                 <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 40px;">We believe in our teaching so much that we offer a risk-free start</p>
 
-                <div class="grid-2" style="gap: 30px; text-align: left;">
-                    <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); padding: 30px; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.2);">
-                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                            <i class="fa-solid fa-gift" style="font-size: 2.5rem; color: var(--accent-orange);"></i>
-                            <h3 style="color: #fff; margin: 0;">1 Week Free Trial</h3>
-                        </div>
-                        <p style="opacity: 0.9; line-height: 1.7;">Experience a full week of live online classes before making any commitment. Experience the online environment, interact with teachers, and evaluate our curriculum.</p>
-                        <ul style="list-style: none; margin-top: 15px; display: flex; flex-direction: column; gap: 8px; padding:0;">
-                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Full access for 1 full week</li>
-                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Experience interactive live sessions</li>
-                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> No initial payment required</li>
-                        </ul>
-                        <button class="btn-cta" onclick="switchView('enrol')" style="margin-top: 15px; background: #fff; color: var(--primary-deep);">Book 1 Week Free Trial</button>
-                    </div>
-
+                <div style="max-width: 500px; margin: 0 auto; text-align: left;">
                     <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); padding: 30px; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.2);">
                         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
                             <i class="fa-solid fa-video" style="font-size: 2.5rem; color: var(--accent-orange);"></i>
@@ -1219,7 +1205,7 @@
                         <ul style="list-style: none; margin-top: 15px; display: flex; flex-direction: column; gap: 8px; padding:0;">
                             <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Loadshedding backup guarantee</li>
                             <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Replay and revise anytime</li>
-                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Full money-back guarantee after trial</li>
+                            <li><i class="fa-solid fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Full money-back guarantee</li>
                         </ul>
                         <div style="margin-top: 15px; background: rgba(255,255,255,0.05); padding: 12px; border-radius: var(--radius-md); border: 1px dashed rgba(255,255,255,0.3);">
                             <p style="font-size: 0.9rem; opacity: 0.8; margin: 0;"><i class="fa-solid fa-shield-check"></i> Uninterrupted learning guaranteed</p>
@@ -1238,8 +1224,8 @@
                 <div class="step-card" style="border-left: 4px solid var(--primary-deep);">
                     <div class="step-number" style="background: var(--primary-deep);">1</div>
                     <div class="step-content">
-                        <h4>Enrol & Start Your 1-Week Free Trial</h4>
-                        <p>Complete your registration and gain immediate access to a full week of live online French classes.</p>
+                        <h4>Enrol & Get Started</h4>
+                        <p>Complete your registration and gain immediate access to live online French classes.</p>
                     </div>
                 </div>
                 <div class="step-card" style="border-left: 4px solid var(--accent-orange);">
@@ -1275,7 +1261,7 @@
             <div style="text-align: center; margin-top: 30px; background: var(--primary-gradient); padding: 25px; border-radius: var(--radius-lg); color: #fff;">
                 <p style="font-size: 1.1rem; margin: 0;">
                     <i class="fa-solid fa-circle-check"></i>
-                    From trial to fluency — we support you every step of the way.
+                    From day one to fluency — we support you every step of the way.
                 </p>
             </div>
         </section>
@@ -1284,7 +1270,6 @@
         <section class="section-padding">
             <h2 class="section-title">Why Choose Frenchora?</h2>
             <ul class="features-list">
-                <li><i class="fa-solid fa-circle-check"></i> 1-Week Free Trial of live classes</li>
                 <li><i class="fa-solid fa-circle-check"></i> Lesson recordings for missed classes & loadshedding</li>
                 <li><i class="fa-solid fa-circle-check"></i> Small and supportive learning groups</li>
                 <li><i class="fa-solid fa-circle-check"></i> Placement according to age and level</li>
@@ -1409,11 +1394,11 @@
 
         <!-- CTA BANNER -->
         <div class="cta-banner">
-            <h2>Start your Frenchora journey with 1 week free</h2>
+            <h2>Start your Frenchora journey today</h2>
             <p>Whether your child needs to keep French alive, improve reading and writing, or start French from zero, Frenchora is ready to support the journey.</p>
             <div style="display:flex; gap:15px; justify-content:center; flex-wrap: wrap;">
                 <button class="btn-cta" style="background: var(--primary-deep); border: 2px solid #fff;" onclick="switchView('enrol')">Book a Placement Discussion</button>
-                <button class="btn-cta" onclick="switchView('enrol')">Claim 1 Week Free Trial</button>
+                <button class="btn-cta" onclick="switchView('enrol')">Enrol Now</button>
             </div>
         </div>
 
@@ -1703,13 +1688,13 @@
                 </div>
                 <div style="text-align:center; margin-bottom:40px;">
                     <h2 class="section-title" style="font-size:2.5rem; color:var(--primary-deep); margin-bottom:10px;">Enrol at Frenchora</h2>
-                    <p class="section-subtitle" style="color:var(--text-muted); font-size:1.1rem;">Start with a 1-Week Free Trial of live classes.</p>
+                    <p class="section-subtitle" style="color:var(--text-muted); font-size:1.1rem;">Join our live online French classes.</p>
                 </div>
 
                 <div class="registration-box" id="enrolment-portal-card">
                     <div class="reg-header">
                         <h2 style="color:#fff; margin-bottom:10px; font-size:1.8rem;">Ready to begin?</h2>
-                        <p style="opacity:0.9; font-size:1rem;">Complete your details below to activate your 1-week free trial access.</p>
+                        <p style="opacity:0.9; font-size:1rem;">Complete your details below to activate your registration.</p>
                     </div>
                     <div class="reg-body" id="enrol-form-container">
                         <h3 style="margin-bottom:20px; border-bottom:2px solid var(--bg-light); padding-bottom:10px; color:var(--primary-deep);">Registration Request Form</h3>
@@ -1803,7 +1788,7 @@
                                     <input type="text" placeholder="e.g. English, French, Bilingual at home" required style="width:100%;">
                                 </div>
                             </div>
-                            <button type="submit" class="btn-cta" id="btn-submit-registration" style="width:100%; padding:16px; font-size:1.1rem; border:none; border-radius:8px; font-weight:700; color:white; background:var(--accent-orange); cursor:pointer;">Activate 1-Week Free Trial Registration</button>
+                            <button type="submit" class="btn-cta" id="btn-submit-registration" style="width:100%; padding:16px; font-size:1.1rem; border:none; border-radius:8px; font-weight:700; color:white; background:var(--accent-orange); cursor:pointer;">Submit Registration</button>
                         </form>
                     </div>
                 </div>
@@ -1869,15 +1854,6 @@
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">
-                        <h3>How does the 1-Week Free Trial work?</h3>
-                        <i class="fa-solid fa-chevron-down faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">When you register, you receive complete access to 1 full week of live online classes with no initial financial commitment. This allows you and your learner to test out our environment before enrolling full-time.</div>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
                         <h3>Can adults join?</h3>
                         <i class="fa-solid fa-chevron-down faq-icon"></i>
                     </div>
@@ -1916,11 +1892,11 @@
                     <div>
                         <h5 style="color: #fff; font-size: 0.9rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">Quick Links</h5>
                         <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px;">
-                            <li><a onclick="switchView('programmes')" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">Programmes</a></li>
-                            <li><a onclick="switchView('fees')" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">Fees & Structure</a></li>
-                            <li><a onclick="switchView('how-classes-work')" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">How Classes Work</a></li>
-                            <li><a onclick="switchView('vacancies')" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">Careers / Vacancies</a></li>
-                            <li><a onclick="switchView('enrol')" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">Enrol Now</a></li>
+                            <li><a href="#programmes" onclick="switchView('programmes'); return false;" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">Programmes</a></li>
+                            <li><a href="#fees" onclick="switchView('fees'); return false;" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">Fees & Structure</a></li>
+                            <li><a href="#how-classes-work" onclick="switchView('how-classes-work'); return false;" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">How Classes Work</a></li>
+                            <li><a href="#vacancies" onclick="switchView('vacancies'); return false;" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">Careers / Vacancies</a></li>
+                            <li><a href="#enrol" onclick="switchView('enrol'); return false;" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem; cursor: pointer;">Enrol Now</a></li>
                         </ul>
                     </div>
 
@@ -1958,9 +1934,6 @@
                     <span style="background: rgba(15, 76, 129, 0.1); border: 1px solid var(--primary-deep); color: var(--primary-deep); padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">
                         <i class="fa-solid fa-video"></i> Class Recordings Backups
                     </span>
-                    <span style="background: rgba(37, 211, 102, 0.1); border: 1px solid #25D366; color: #25D366; padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">
-                        <i class="fa-solid fa-gift"></i> 1-Week Free Trial
-                    </span>
                 </div>
 
                 <!-- CPA Full Legal Text -->
@@ -1973,9 +1946,6 @@
                         Frenchora adheres to the South African Consumer Protection Act 68 of 2008.
                         All lesson cancellations require 24-hour notice. In the event of loadshedding or
                         technical difficulties, full lesson recordings will be provided to all affected students.
-                    </p>
-                    <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.6; margin-bottom: 0;">
-                        <strong style="color: #fff;">1-Week Trial & Guarantee:</strong> Enjoy 1 full week of trial classes with zero obligation.
                     </p>
                 </div>
 
@@ -2058,7 +2028,7 @@
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
         // Switch Views
-        function switchView(viewId) {
+        function switchView(viewId, addHistory = true) {
             document.querySelectorAll('.app-view').forEach(view => {
                 view.classList.remove('active-view');
             });
@@ -2074,7 +2044,30 @@
             document.getElementById('mobile-menu-btn').classList.remove('open');
 
             window.scrollTo(0, 0);
+
+            // Push a new history entry so the back/forward buttons work
+            if (addHistory) {
+                const url = viewId === 'landing' ? window.location.pathname : '#' + viewId;
+                history.pushState({ view: viewId }, '', url);
+            }
         }
+
+        // React to the browser's back/forward buttons
+        window.addEventListener('popstate', function(event) {
+            const viewId = (event.state && event.state.view) || 'landing';
+            switchView(viewId, false);
+        });
+
+        // Handle a direct link or page refresh that lands on a hash (e.g. yoursite.com/#programmes)
+        document.addEventListener('DOMContentLoaded', function() {
+            const initialView = window.location.hash ? window.location.hash.substring(1) : 'landing';
+            if (document.getElementById('view-' + initialView)) {
+                switchView(initialView, false);
+                history.replaceState({ view: initialView }, '', window.location.href);
+            } else {
+                history.replaceState({ view: 'landing' }, '', window.location.href);
+            }
+        });
 
         // Auto Age Calculation Script for DOB input
         document.getElementById('reg-dob')?.addEventListener('change', function() {
@@ -2200,7 +2193,7 @@
                             </div>
                             <h2 style="color:var(--primary-deep); font-size:2rem; margin-bottom:12px; font-weight:800;">Registration Sent Successfully!</h2>
                             <p style="color:#475569; font-size:1.1rem; max-width:500px; margin:0 auto 20px auto; line-height:1.6;">
-                                Your 1-week free trial request has been logged. You will receive an email shortly with your schedule and portal login details.
+                                Your registration request has been logged. You will receive an email shortly with your schedule and portal login details.
                             </p>
                             <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:14px 20px; border-radius:8px; display:inline-block; margin-bottom:30px;">
                                 <span style="font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; color:#64748b; font-weight:700; display:block; margin-bottom:4px;">Reference Number:</span>
